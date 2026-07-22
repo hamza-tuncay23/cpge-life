@@ -183,28 +183,14 @@ const SITE_DATA = {
     // 7. TÉMOIGNAGES (vides pour l'instant)
     // ========================================
     temoignages: [
-        {
-            nom: "Yasmine El Amrani",
-            etablissement: "CPGE Ibn Ghazi, Rabat",
-            filiere: "MP",
-            annee: "2ème année",
-            texte: "CPGE Life m'a aidée à trouver les meilleurs cours de maths et à comparer les écoles avant de choisir. Une ressource indispensable pour tout préparationnaire."
-        },
-        {
-            nom: "Mehdi Benali",
-            etablissement: "CPGE Moulay Youssef, Rabat",
-            filiere: "PC",
-            annee: "1ère année",
-            texte: "J'ai découvert ma filière grâce au guide d'orientation. Les cours de thermodynamique m'ont sauvé la vie pendant les khôlles !"
-        },
-        {
-            nom: "Fatima-Zahra Tazi",
-            etablissement: "CPGE Al Khawarizmi, Casablanca",
-            filiere: "ECG",
-            annee: "2ème année",
-            texte: "La communauté est incroyable. On s'entraide entre préparationnaires de toutes les filières. C'est exactement ce qui manquait au Maroc."
-        }
-    ],
+  {
+    "nom": "Page",
+    "etablissement": "CPGE Lycée technique, Mohammedia",
+    "filiere": "MP",
+    "annee": "2ème année",
+    "texte": "Test"
+  }
+],
 
     // ========================================
     // 8. MENU PRINCIPAL
