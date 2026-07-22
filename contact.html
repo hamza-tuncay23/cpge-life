@@ -583,50 +583,45 @@
         // 3. ENVOI DU FORMULAIRE VIA EMAILJS
         // ============================================================
         function sendMessage(event) {
-            event.preventDefault();
+	   event.preventDefault();
 
-            const btn = document.getElementById('submitBtn');
-            const success = document.getElementById('formSuccess');
-            const error = document.getElementById('formError');
+	   const btn = document.getElementById('submitBtn');
+ 	   const success = document.getElementById('formSuccess');
+ 	   const error = document.getElementById('formError');
 
-            // Désactiver le bouton
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+	    btn.disabled = true;
+	    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
 
-            // Cacher les messages précédents
-            success.style.display = 'none';
-            error.style.display = 'none';
+ 	   success.style.display = 'none';
+ 	   error.style.display = 'none';
 
-            // Récupérer les données
-            const name = document.getElementById('contactName').value.trim();
-            const email = document.getElementById('contactEmail').value.trim();
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value.trim();
+ 	   const name = document.getElementById('contactName').value.trim();
+ 	   const email = document.getElementById('contactEmail').value.trim();
+	   const subject = document.getElementById('contactSubject').value;
+	   const message = document.getElementById('contactMessage').value.trim();
 
-            // Préparer les données pour EmailJS
-            const templateParams = {
-                to_email: 'bde.ltm.2026@gmail.com',
-                from_name: name,
-                from_email: email,
-                subject: subject,
-                message: message
-            };
+	   // ✅ CORRECTION : les noms correspondent exactement au template
+	   const templateParams = {
+        	name: name,
+        	email: email,
+        	subject: subject,
+        	message: message
+    	};
 
-            // Envoyer via EmailJS
-            emailjs.send('cpge_life', 'cpge_life_contact', templateParams)
-                .then(function(response) {
-                    console.log('✅ Email envoyé avec succès !', response);
-                    success.style.display = 'block';
-                    document.getElementById('contactForm').reset();
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
-                }, function(error) {
-                    console.error('❌ Erreur EmailJS :', error);
-                    error.style.display = 'block';
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
-                });
-        }
+    	emailjs.send('cpge_life', 'cpge_life_contact', templateParams)
+        	.then(function(response) {
+            		console.log('✅ Email envoyé !', response);
+            		success.style.display = 'block';
+            		document.getElementById('contactForm').reset();
+            		btn.disabled = false;
+            		btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+        	}, function(error) {
+            		console.error('❌ Erreur :', error);
+            		error.style.display = 'block';
+            		btn.disabled = false;
+            		btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+        	});
+	}
     </script>
 
 </body>
