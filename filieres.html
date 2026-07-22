@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Filières CPGE - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES FILIÈRES
+           ============================================ */
+        .filieres-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .filieres-page {
+            background: var(--color-gray-900);
+        }
+
+        .filieres-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .filieres-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Filière card (page entière) */
+        .filiere-full {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 32px 36px;
+            margin-bottom: 32px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-top: 6px solid var(--color-gray-300);
+        }
+
+        [data-theme="dark"] .filiere-full {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .filiere-full:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .filiere-full.mp { border-top-color: #4F46E5; }
+        .filiere-full.psi { border-top-color: #06B6D4; }
+        .filiere-full.tsi { border-top-color: #F59E0B; }
+
+        .filiere-full .filiere-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .filiere-full .filiere-header .icon {
+            font-size: 3rem;
+            width: 60px;
+            text-align: center;
+        }
+
+        .filiere-full .filiere-header .title-group h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-header .title-group h2 {
+            color: var(--color-white);
+        }
+
+        .filiere-full .filiere-header .title-group .badge-taux {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: var(--color-gray-200);
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-header .title-group .badge-taux {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .filiere-full .filiere-header .title-group .badge-taux .val {
+            color: var(--color-secondary);
+        }
+
+        .filiere-full .filiere-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-body {
+            color: var(--color-gray-300);
+        }
+
+        .filiere-full .filiere-body .description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-body .description {
+            color: var(--color-gray-400);
+        }
+
+        .filiere-full .filiere-body .description strong {
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-body .description strong {
+            color: var(--color-white);
+        }
+
+        .filiere-full .filiere-body .matieres h4,
+        .filiere-full .filiere-body .banques h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-gray-400);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .filiere-full .filiere-body .matieres .matiere-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 16px;
+            background: var(--color-gray-200);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 6px 6px 0;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-body .matieres .matiere-tag {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .filiere-full .filiere-body .banques .banque-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 16px;
+            background: rgba(79, 70, 229, 0.1);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 6px 6px 0;
+            color: var(--color-secondary);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-body .banques .banque-tag {
+            background: rgba(79, 70, 229, 0.2);
+        }
+
+        .filiere-full .filiere-footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--color-gray-200);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-footer {
+            border-top-color: var(--color-gray-700);
+        }
+
+        .filiere-full .filiere-footer .btn-filiere {
+            padding: 10px 28px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filiere-full .filiere-footer .btn-filiere.mp { background: #4F46E5; }
+        .filiere-full .filiere-footer .btn-filiere.psi { background: #06B6D4; }
+        .filiere-full .filiere-footer .btn-filiere.tsi { background: #F59E0B; }
+
+        .filiere-full .filiere-footer .btn-filiere:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filiere-full .filiere-footer .btn-filiere.mp:hover { background: #6366F1; }
+        .filiere-full .filiere-footer .btn-filiere.psi:hover { background: #22D3EE; }
+        .filiere-full .filiere-footer .btn-filiere.tsi:hover { background: #FBBF24; }
+
+        .filiere-full .filiere-footer .btn-secondaire {
+            padding: 10px 28px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .filiere-full .filiere-footer .btn-secondaire {
+            border-color: var(--color-gray-600);
+            color: var(--color-gray-400);
+        }
+
+        .filiere-full .filiere-footer .btn-secondaire:hover {
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .filiere-full .filiere-body {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .filiere-full .filiere-body .description {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .filiere-full {
+                padding: 20px;
+            }
+
+            .filiere-full .filiere-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .filiere-full .filiere-header .icon {
+                font-size: 2.5rem;
+                width: auto;
+            }
+
+            .filiere-full .filiere-header .title-group h2 {
+                font-size: 1.4rem;
+            }
+
+            .filiere-full .filiere-body {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .filiere-full .filiere-body .description {
+                grid-column: 1;
+            }
+
+            .filiere-full .filiere-footer {
+                flex-direction: column;
+            }
+
+            .filiere-full .filiere-footer .btn-filiere,
+            .filiere-full .filiere-footer .btn-secondaire {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .filieres-page .page-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filiere-full {
+                padding: 16px;
+            }
+
+            .filiere-full .filiere-header .title-group h2 {
+                font-size: 1.2rem;
+            }
+
+            .filiere-full .filiere-header .title-group .badge-taux {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="#">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Cours</a></li>
+                            <li><a href="#">TD et DS</a></li>
+                            <li><a href="#">Extraits de concours</a></li>
+                            <li><a href="#">Drive complet</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">CNC</a></li>
+                            <li><a href="#">Banque CCINP</a></li>
+                            <li><a href="#">Banque Mines</a></li>
+                            <li><a href="#">Banque X-ENS</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#">Actualités</a></li>
+                    <li class="nav-item"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE FILIÈRES -->
+    <!-- ============================================================ -->
+    <section class="filieres-page">
+        <div class="container">
+
+            <h1 class="page-title">📐 Les Filières CPGE</h1>
+            <p class="page-subtitle">3 filières d'excellence : MP, PSI, TSI</p>
+
+            <div id="filieresContainer">
+                <!-- Généré par JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="#">Documents</a>
+                <a href="#">Annales</a>
+                <a href="#">Actualités</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+                <a href="#">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script src="js/data.js"></script>
+    <script>
+        // ============================================================
+        // DONNÉES DES FILIÈRES
+        // ============================================================
+        const filieresData = [
+            {
+                id: "mp",
+                nom: "MP",
+                titre: "Maths & Physique",
+                icon: "📐",
+                couleur: "#4F46E5",
+                description: `La prépa <strong>MP (Mathématiques et Physique)</strong> se distingue par sa nature hautement théorique et abstraite, mettant l'accent sur le formalisme conceptuel plutôt que sur l'application pratique. Les mathématiques y occupent une place hégémonique, structurant la pensée des étudiants pour aborder la physique sous un angle très mathématisé. C'est la formation idéale pour les profils passionnés par la rigueur logique, l'algorithmique avancée et la modélisation conceptuelle.`,
+                matieres: ["Mathématiques", "Physique", "Informatique"],
+                banques: ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+                tauxReussite: 79.2,
+                concours: ["X-ENS", "Centrale", "Mines Pont", "CCINP", "e3a", "CC", "ECC", "EAMR", "IST&I", "EMINES"]
+            },
+            {
+                id: "psi",
+                nom: "PSI",
+                titre: "Physique & Sciences de l'Ingénieur",
+                icon: "🔧",
+                couleur: "#06B6D4",
+                description: `La filière <strong>PSI (Physique et Sciences de l'Ingénieur)</strong> se différencie nettement de la MP par son ancrage concret et son approche technologique des sciences. Alors que la MP mise sur l'abstraction mathématique pure, la PSI privilégie l'analyse, la modélisation et l'expérimentation de systèmes réels et complexes (aéronautique, robotique, systèmes embarqués). Les Sciences de l'Ingénieur (SI) et les travaux pratiques de physique y occupent une place centrale.`,
+                matieres: ["Physique", "Chimie", "Sciences de l'Ingénieur"],
+                banques: ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+                tauxReussite: 88.4,
+                concours: ["X-ENS", "Centrale", "Mines Pont", "CCINP", "e3a", "ECC", "EAMR", "IST&I", "EMINES"]
+            },
+            {
+                id: "tsi",
+                nom: "TSI",
+                titre: "Technologies & Sciences Industrielles",
+                icon: "⚙️",
+                couleur: "#F59E0B",
+                description: `La filière <strong>TSI (Technologie et Sciences Industrielles)</strong> se distingue des voies MP et PSI par son public et sa pédagogie ancrée dans le réel. Exclusivement réservée aux bacheliers des filières technologiques, elle privilégie une démarche inductive : elle part de l'observation concrète de systèmes industriels pour introduire la théorie. Les Sciences Industrielles de l'Ingénieur (SII) y occupent une place prépondérante.`,
+                matieres: ["Génie Électrique", "Génie Mécanique", "Physique"],
+                banques: ["CCINP", "Centrale", "CNC", "UM6P"],
+                tauxReussite: 86.2,
+                concours: ["Centrale", "CCINP", "ECC", "EAMR", "IST&I", "EMINES"]
+            }
+        ];
+
+        // ============================================================
+        // 1. INITIALISATION
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mode sombre
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+
+            renderFilieres();
+        });
+
+        // ============================================================
+        // 2. RENDU DES FILIÈRES
+        // ============================================================
+        function renderFilieres() {
+            const container = document.getElementById('filieresContainer');
+
+            let html = '';
+
+            filieresData.forEach(f => {
+                // Matières
+                const matieresHtml = f.matieres.map(m => `
+                    <span class="matiere-tag">${m}</span>
+                `).join('');
+
+                // Banques
+                const banquesHtml = f.banques.map(b => `
+                    <span class="banque-tag">${b}</span>
+                `).join('');
+
+                // Taux
+                const tauxDisplay = f.tauxReussite ? `<span class="val">${f.tauxReussite}%</span>` : '—';
+
+                html += `
+                    <div class="filiere-full ${f.id}">
+                        <div class="filiere-header">
+                            <div class="icon">${f.icon}</div>
+                            <div class="title-group">
+                                <h2>${f.nom} — ${f.titre}</h2>
+                                <span class="badge-taux">🏆 Taux de réussite : ${tauxDisplay}</span>
+                            </div>
+                        </div>
+                        <div class="filiere-body">
+                            <div class="description">
+                                ${f.description}
+                                <br/><br/>
+                                <strong>Concours préparés :</strong> ${f.concours.join(', ')}
+                            </div>
+                            <div class="matieres">
+                                <h4>📚 Matières</h4>
+                                ${matieresHtml}
+                            </div>
+                            <div class="banques">
+                                <h4>📋 Banques d'épreuves</h4>
+                                ${banquesHtml}
+                            </div>
+                        </div>
+                        <div class="filiere-footer">
+                            <button class="btn-filiere ${f.id}" onclick="goToFiliere('${f.id}')">
+                                <i class="fas fa-arrow-right"></i> Voir la filière ${f.nom}
+                            </button>
+                            <button class="btn-secondaire" onclick="showCentresByFiliere('${f.id}')">
+                                <i class="fas fa-school"></i> Centres proposant ${f.nom}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        // 3. ACTIONS
+        // ============================================================
+        function goToFiliere(id) {
+            // Rediriger vers la page spécifique (sera créée plus tard)
+            window.location.href = `filiere-${id}.html`;
+        }
+
+        function showCentresByFiliere(filiere) {
+            // Filtrer les centres depuis centresData (défini dans centres.html)
+            // Pour l'instant on redirige vers la page centres avec le filtre
+            window.location.href = `centres.html?filiere=${filiere}`;
+        }
+    </script>
+
+</body>
+</html>
