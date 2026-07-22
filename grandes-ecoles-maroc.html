@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Grandes Écoles Maroc - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES GRANDES ÉCOLES
+           ============================================ */
+        .ecoles-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .ecoles-page {
+            background: var(--color-gray-900);
+        }
+
+        .ecoles-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ecoles-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Barre de recherche et filtres */
+        .ecoles-search {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 16px 24px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .ecoles-search {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecoles-search .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 18px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .ecoles-search .search-input {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .ecoles-search .search-input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .ecoles-search .search-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ecoles-search .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .ecoles-search .filter-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .ecoles-search .filter-label {
+            color: var(--color-gray-400);
+        }
+
+        .ecoles-search select {
+            padding: 10px 16px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .ecoles-search select {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .ecoles-search select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        /* Résultats */
+        .results-count {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .results-count strong {
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .results-count strong {
+            color: var(--color-white);
+        }
+
+        /* Grille des écoles */
+        .ecoles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .ecole-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .ecole-card {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-secondary);
+        }
+
+        .ecole-card .ecole-rank {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: var(--color-secondary);
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .ecole-card .ecole-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-card .ecole-name {
+            color: var(--color-white);
+        }
+
+        .ecole-card .ecole-acronyme {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+            font-weight: 600;
+        }
+
+        .ecole-card .ecole-ville {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            margin: 4px 0 10px;
+        }
+
+        .ecole-card .ecole-filieres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .ecole-card .ecole-filieres .filiere-tag {
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .ecole-card .ecole-filieres .filiere-tag.mp { background: #4F46E5; }
+        .ecole-card .ecole-filieres .filiere-tag.psi { background: #06B6D4; }
+        .ecole-card .ecole-filieres .filiere-tag.tsi { background: #F59E0B; }
+
+        .ecole-card .ecole-places {
+            display: flex;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+            padding-top: 10px;
+            border-top: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .ecole-card .ecole-places {
+            border-top-color: var(--color-gray-700);
+        }
+
+        .ecole-card .ecole-places span strong {
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-card .ecole-places span strong {
+            color: var(--color-white);
+        }
+
+        .ecole-card .btn-detail {
+            margin-top: 14px;
+            padding: 8px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .ecole-card .btn-detail:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Modal / Page détail */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            margin: 20px auto;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        [data-theme="dark"] .modal-content {
+            background: var(--color-gray-800);
+        }
+
+        .modal-content .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: var(--color-gray-200);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--color-gray-700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        [data-theme="dark"] .modal-content .modal-close {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .modal-content .modal-close:hover {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .modal-content .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .modal-content .modal-title {
+            color: var(--color-white);
+        }
+
+        .modal-content .modal-subtitle {
+            font-size: 1rem;
+            color: var(--color-gray-500);
+            margin-bottom: 16px;
+        }
+
+        .modal-content .modal-section {
+            margin-bottom: 24px;
+        }
+
+        .modal-content .modal-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        [data-theme="dark"] .modal-content .modal-section h3 {
+            color: var(--color-white);
+        }
+
+        .modal-content .modal-section p {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+
+        [data-theme="dark"] .modal-content .modal-section p {
+            color: var(--color-gray-400);
+        }
+
+        .modal-content .places-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .modal-content .places-table th,
+        .modal-content .places-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--color-gray-200);
+            text-align: center;
+        }
+
+        [data-theme="dark"] .modal-content .places-table th,
+        [data-theme="dark"] .modal-content .places-table td {
+            border-color: var(--color-gray-700);
+        }
+
+        .modal-content .places-table th {
+            background: var(--color-gray-100);
+            font-weight: 700;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .modal-content .places-table th {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .modal-content .places-table td {
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .modal-content .places-table td {
+            color: var(--color-gray-400);
+        }
+
+        .modal-content .places-table .highlight {
+            color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        /* Min/Max tableau */
+        .minmax-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .minmax-table th,
+        .minmax-table td {
+            padding: 8px 12px;
+            border: 1px solid var(--color-gray-200);
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        [data-theme="dark"] .minmax-table th,
+        [data-theme="dark"] .minmax-table td {
+            border-color: var(--color-gray-700);
+        }
+
+        .minmax-table th {
+            background: var(--color-gray-100);
+            font-weight: 700;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .minmax-table th {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .minmax-table td {
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .minmax-table td {
+            color: var(--color-gray-400);
+        }
+
+        /* Recommandation */
+        .recommandation {
+            margin-top: 12px;
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            background: var(--color-gray-50);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .recommandation {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .recommandation .range-input {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .recommandation .range-input label {
+            font-weight: 600;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .recommandation .range-input label {
+            color: var(--color-gray-300);
+        }
+
+        .recommandation .range-input input {
+            padding: 8px 14px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            width: 120px;
+            font-size: 0.95rem;
+            background: var(--color-white);
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .recommandation .range-input input {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .recommandation .range-input input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        .recommandation .range-input button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .recommandation .range-input button:hover {
+            background: var(--color-secondary-light);
+        }
+
+        .recommandation .result {
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            display: none;
+        }
+
+        .recommandation .result.faible {
+            display: block;
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .recommandation .result.moyenne {
+            display: block;
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .recommandation .result.forte {
+            display: block;
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .recommandation .result .chance-bar {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--color-gray-200);
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .recommandation .result .chance-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .recommandation .result .chance-bar .fill.faible { background: #EF4444; }
+        .recommandation .result .chance-bar .fill.moyenne { background: #F59E0B; }
+        .recommandation .result .chance-bar .fill.forte { background: #10B981; }
+
+        /* Liens utiles */
+        .liens-utiles {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .liens-utiles a {
+            padding: 8px 20px;
+            border: 1px solid var(--color-secondary);
+            border-radius: var(--radius-sm);
+            color: var(--color-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .liens-utiles a:hover {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .ecoles-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .ecoles-grid { grid-template-columns: 1fr; }
+            .ecoles-page .page-title { font-size: 1.8rem; }
+            .ecoles-search { flex-direction: column; }
+            .ecoles-search .search-input { width: 100%; }
+            .modal-content { padding: 24px; margin: 10px; }
+            .modal-content .modal-title { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .ecoles-page .page-title { font-size: 1.4rem; }
+            .modal-content { padding: 16px; }
+            .modal-content .modal-title { font-size: 1.2rem; }
+            .modal-content .places-table th,
+            .modal-content .places-table td,
+            .minmax-table th,
+            .minmax-table td { font-size: 0.7rem; padding: 4px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE GRANDES ÉCOLES MAROC -->
+    <!-- ============================================================ -->
+    <section class="ecoles-page">
+        <div class="container">
+
+            <h1 class="page-title">🏫 Grandes Écoles d'Ingénieurs - Maroc</h1>
+            <p class="page-subtitle">Découvrez toutes les écoles accessibles après les CPGE</p>
+
+            <!-- Recherche et filtres -->
+            <div class="ecoles-search">
+                <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une école, une filière..." oninput="filterEcoles()"/>
+                <button class="search-btn" onclick="filterEcoles()">
+                    <i class="fas fa-search"></i> Rechercher
+                </button>
+                <span class="filter-label">Filtrer par :</span>
+                <select id="filiereFilter" onchange="filterEcoles()">
+                    <option value="all">Toutes les filières</option>
+                    <option value="MP">MP</option>
+                    <option value="PSI">PSI</option>
+                    <option value="TSI">TSI</option>
+                </select>
+            </div>
+
+            <!-- Résultats -->
+            <div class="results-count">
+                Affichage de <strong id="countDisplay">0</strong> école(s)
+            </div>
+
+            <!-- Grille -->
+            <div class="ecoles-grid" id="ecolesGrid">
+                <!-- Généré par JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- MODAL (Détail de l'école) -->
+    <!-- ============================================================ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div id="modalBody">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+
+            renderEcoles();
+        });
+
+        // ============================================================
+        // 2. DONNÉES DES ÉCOLES
+        // ============================================================
+        const ECOLES_DATA = [
+            {
+                id: 'emi',
+                acronyme: 'EMI',
+                nom: 'École Mohammadia des Ingénieurs',
+                ville: 'Rabat',
+                description: "L'EMI est la plus ancienne et l'une des plus prestigieuses écoles d'ingénieurs du Maroc. Fondée en 1959, elle forme des ingénieurs généralistes de haut niveau dans de nombreux domaines.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 406, PSI: 72, TSI: 70 },
+                total: 548,
+                minmax: {
+                    MP: { min: 3, max: 1742 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Généraliste', 'Chef de Projet', 'Directeur Technique', 'Consultant'],
+                site: 'https://www.emi.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'ensias',
+                acronyme: 'ENSIAS',
+                nom: "École Nationale Supérieure d'Informatique et d'Analyse des Systèmes",
+                ville: 'Rabat',
+                description: "Fondée en 1992, l'ENSIAS est l'une des écoles d'ingénieurs les plus prestigieuses du Maroc dans les domaines de l'informatique, de l'intelligence artificielle, de la cybersécurité et de la data science.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 200, PSI: 37, TSI: 44 },
+                total: 281,
+                minmax: {
+                    MP: { min: 5, max: 1220 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                filieresDetails: [
+                    { nom: 'Systèmes intelligents', min: 25, max: 1220 },
+                    { nom: 'Business Intelligence & Analytics', min: 228, max: 723 },
+                    { nom: 'Data and Software Sciences', min: 248, max: 1035 },
+                    { nom: 'Génie Logiciel', min: 160, max: 860 },
+                    { nom: 'Intelligence Artificielle', min: 111, max: 706 },
+                    { nom: 'Cyber Security & Cloud', min: 0, max: 0 },
+                    { nom: 'Smart Supply Chain and Logistics', min: 653, max: 1134 },
+                    { nom: 'Ingénierie Digitale pour la Finance', min: 257, max: 1049 }
+                ],
+                debouches: ['Software Engineer', 'Data Scientist', 'Cyber Security Analyst', 'AI Engineer', 'DevOps Engineer'],
+                site: 'https://www.ensias.ma',
+                brochure: '#'
+            },
+            {
+                id: 'inpt',
+                acronyme: 'INPT',
+                nom: "Institut National des Postes et Télécommunications",
+                ville: 'Rabat',
+                description: "L'INPT est un établissement public de référence dans les domaines des télécommunications, des technologies de l'information et des réseaux.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 123, PSI: 68, TSI: 55 },
+                total: 246,
+                minmax: {
+                    MP: { min: 8, max: 1080 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Télécoms', 'Architecte Réseaux', 'Chef de Projet IT', 'Consultant'],
+                site: 'https://www.inpt.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'ensmr',
+                acronyme: 'ENSMR',
+                nom: "École Nationale Supérieure des Mines de Rabat",
+                ville: 'Rabat',
+                description: "L'ENSMR (ex-ENIM) est une grande école d'ingénieurs spécialisée dans les mines, la géologie et l'industrie minérale.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 175, PSI: 75, TSI: 50 },
+                total: 300,
+                minmax: {
+                    MP: { min: 9, max: 1742 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur des Mines', 'Géologue', 'Responsable Industriel', 'Consultant'],
+                site: 'https://www.enim.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'ehtp',
+                acronyme: 'EHTP',
+                nom: "École Hassania des Travaux Publics",
+                ville: 'Casablanca',
+                description: "L'EHTP est la principale école d'ingénieurs marocaine dans les domaines du génie civil, des transports, de l'hydraulique et de l'aménagement.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 254, PSI: 33, TSI: 13 },
+                total: 300,
+                minmax: {
+                    MP: { min: 19, max: 2105 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Civil', 'Chef de Projet BTP', 'Urbaniste', 'Hydraulicien'],
+                site: 'https://www.ehtp.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'insea',
+                acronyme: 'INSEA',
+                nom: "Institut National de Statistique et d'Économie Appliquée",
+                ville: 'Rabat',
+                description: "L'INSEA est la référence au Maroc pour la formation en statistique, data science, économétrie et actuariat.",
+                filieres: ['MP', 'PSI'],
+                places: { MP: 172, PSI: 44, TSI: null },
+                total: 216,
+                minmax: {
+                    MP: { min: 32, max: 1965 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Statisticien', 'Data Scientist', 'Actuaire', 'Économètre'],
+                site: 'https://www.insea.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'aiac',
+                acronyme: 'AIAC',
+                nom: "Académie Internationale Mohammed-VI de l'Aviation Civile",
+                ville: 'Casablanca',
+                description: "L'AIAC forme les ingénieurs dans les métiers de l'aviation civile, de la sécurité aérienne et de l'aéronautique.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 78, PSI: 30, TSI: 30 },
+                total: 138,
+                minmax: {
+                    MP: { min: 75, max: 1950 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Aéronautique', 'Responsable Sécurité Aérienne', 'Contrôleur Aérien'],
+                site: '#',
+                brochure: '#'
+            },
+            {
+                id: 'ensem',
+                acronyme: 'ENSEM',
+                nom: "École Nationale Supérieure d'Électricité et de Mécanique",
+                ville: 'Casablanca',
+                description: "L'ENSEM est une école d'ingénieurs de référence dans les domaines de l'électrotechnique, de la mécanique et de l'énergétique.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 105, PSI: 88, TSI: 65 },
+                total: 258,
+                minmax: {
+                    MP: { min: 195, max: 2260 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Électrotechnicien', 'Mécanicien', 'Spécialiste Énergétique'],
+                site: 'https://www.ensem.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'esi',
+                acronyme: 'ESI',
+                nom: "École des Sciences de l'Information",
+                ville: 'Rabat',
+                description: "L'ESI est une école spécialisée dans les sciences de l'information, la documentation, les bibliothèques et les archives.",
+                filieres: ['MP', 'PSI'],
+                places: { MP: 100, PSI: 22, TSI: null },
+                total: 122,
+                minmax: {
+                    MP: { min: 211, max: 2339 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Archiviste', 'Documentaliste', 'Chef de Projet Information'],
+                site: 'https://www.esi.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'ensam',
+                acronyme: 'ENSAM',
+                nom: "Arts & Métiers (Réseau National)",
+                ville: 'Meknès / Casablanca / Rabat',
+                description: "L'ENSAM (Arts et Métiers) est une école d'ingénieurs pluridisciplinaire formant des ingénieurs généralistes avec une forte culture industrielle.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 32, PSI: 32, TSI: 32 },
+                total: 96,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Généraliste', 'Responsable Industriel', 'Chef de Projet'],
+                site: 'https://www.ensam.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'esith',
+                acronyme: 'ESITH',
+                nom: "École Supérieure des Industries du Textile et de l'Habillement",
+                ville: 'Casablanca',
+                description: "L'ESITH est une école spécialisée dans les industries du textile, de l'habillement et du cuir, formant des ingénieurs et des managers.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 114, PSI: 66, TSI: 71 },
+                total: 251,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Textile', 'Responsable Qualité', 'Chef de Production'],
+                site: 'https://www.esith.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'ecc',
+                acronyme: 'ECC',
+                nom: "École Centrale Casablanca",
+                ville: 'Casablanca (Bouskoura)',
+                description: "L'École Centrale Casablanca est le premier campus africain du réseau des Écoles Centrales, formant des ingénieurs généralistes de haut niveau.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 90, PSI: 25, TSI: 5 },
+                total: 120,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Généraliste', 'Consultant', 'Chef de Projet'],
+                site: 'https://www.centrale-casablanca.ma',
+                brochure: '#'
+            },
+            {
+                id: 'iav',
+                acronyme: 'IAV',
+                nom: "Agro-Vétérinaire Hassan-II",
+                ville: 'Rabat',
+                description: "L'IAV Hassan-II est une école de référence dans les domaines de l'agronomie, des sciences vétérinaires et du développement rural.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 23, PSI: 10, TSI: 10 },
+                total: 43,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Agronome', 'Vétérinaire', 'Chercheur'],
+                site: 'https://www.iav.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'eia',
+                acronyme: 'EIA',
+                nom: "École d'Ingénieurs Abulcasis (UIASS)",
+                ville: 'Rabat',
+                description: "L'EIA Abulcasis est une école privée d'ingénieurs proposant des formations en génie des procédés industriels et pharmaceutiques, et en génie informatique.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 19, PSI: 5, TSI: 6 },
+                total: 30,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Pharmaceutique', 'Ingénieur Informatique'],
+                site: 'https://www.eia.ma',
+                brochure: '#'
+            },
+            {
+                id: 'isem',
+                acronyme: 'ISEM',
+                nom: "Institut Supérieur d'Études Maritimes",
+                ville: 'Casablanca',
+                description: "L'ISEM est un institut spécialisé dans la formation aux métiers maritimes, de la pêche, du transport maritime et de la logistique.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 30, PSI: 30, TSI: 20 },
+                total: 80,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Maritime', 'Logisticien', 'Officier de Marine'],
+                site: '#',
+                brochure: '#'
+            },
+            {
+                id: 'cipl',
+                acronyme: 'CIPL',
+                nom: "Centre d'Instruction des Pilotes de Ligne",
+                ville: 'Benslimane / Casablanca',
+                description: "Le CIPL est le centre de formation des pilotes de ligne de la RAM, formant des élèves pilotes dans le cadre de la formation ATPL.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 32, PSI: 32, TSI: 32 },
+                total: 96,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Pilote de Ligne', 'Commandant de Bord'],
+                site: '#',
+                brochure: '#'
+            },
+            {
+                id: 'iscae',
+                acronyme: 'ISCAE',
+                nom: "Institut Supérieur de Commerce et d'Administration des Entreprises",
+                ville: 'Casablanca / Rabat',
+                description: "L'ISCAE est la grande école de commerce marocaine, formant des managers et des cadres supérieurs dans les domaines de la finance, du marketing et du management.",
+                filieres: ['MP'],
+                places: { MP: 11, PSI: null, TSI: null },
+                total: 11,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Manager', 'Consultant', 'Directeur Financier', 'Responsable Marketing'],
+                site: 'https://www.iscae.ma',
+                brochure: '#'
+            },
+            {
+                id: 'ensa',
+                acronyme: 'ENSA',
+                nom: "École Nationale des Sciences Appliquées",
+                ville: 'Réseau National',
+                description: "Les ENSA forment des ingénieurs généralistes dans plusieurs villes du Maroc (Agadir, Fès, Marrakech, Tanger, Oujda, Kénitra).",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: null, PSI: null, TSI: null },
+                total: null,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Généraliste', 'Cadre Technique'],
+                site: '#',
+                brochure: '#'
+            },
+            {
+                id: 'enset',
+                acronyme: 'ENSET',
+                nom: "École Normale Supérieure d'Enseignement Technique",
+                ville: 'Mohammedia / Rabat',
+                description: "L'ENSET forme des enseignants et des formateurs dans les domaines des sciences et techniques, ainsi que des ingénieurs pédagogues.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: null, PSI: null, TSI: null },
+                total: null,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Enseignant-Chercheur', 'Formateur', 'Responsable Pédagogique'],
+                site: 'https://www.enset.ac.ma',
+                brochure: '#'
+            },
+            {
+                id: 'fst',
+                acronyme: 'FST',
+                nom: "Faculté des Sciences et Techniques",
+                ville: 'Réseau National',
+                description: "Les FST proposent des formations en sciences et techniques, avec des filières d'ingénierie et de recherche dans plusieurs villes du Maroc.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: 133, PSI: 85, TSI: 43 },
+                total: 261,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur', 'Chercheur', 'Enseignant-Chercheur'],
+                site: '#',
+                brochure: '#'
+            },
+            {
+                id: 'arts-metiers',
+                acronyme: 'Arts & Métiers',
+                nom: "Arts et Métiers Sciences & Technologies",
+                ville: 'Rabat (Salé)',
+                description: "Le campus Arts et Métiers de Rabat est une école d'ingénieurs généraliste du réseau Arts et Métiers, formant des ingénieurs à forte culture industrielle.",
+                filieres: ['MP', 'PSI', 'TSI'],
+                places: { MP: null, PSI: null, TSI: null },
+                total: null,
+                minmax: {
+                    MP: { min: 0, max: 0 },
+                    PSI: { min: 0, max: 0 },
+                    TSI: { min: 0, max: 0 }
+                },
+                debouches: ['Ingénieur Généraliste', 'Responsable Industriel', 'Chef de Projet'],
+                site: 'https://www.artsetmetiers.ma',
+                brochure: '#'
+            }
+        ];
+
+        // ============================================================
+        // 3. RENDU DES ÉCOLES
+        // ============================================================
+        let currentEcoles = [...ECOLES_DATA];
+
+        function renderEcoles() {
+            const grid = document.getElementById('ecolesGrid');
+            const countDisplay = document.getElementById('countDisplay');
+
+            if (currentEcoles.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--color-gray-500);">
+                        <i class="fas fa-search" style="font-size:3rem;display:block;margin-bottom:16px;opacity:0.5;"></i>
+                        <p>Aucune école ne correspond à votre recherche.</p>
+                    </div>
+                `;
+                countDisplay.textContent = '0';
+                return;
+            }
+
+            countDisplay.textContent = currentEcoles.length;
+
+            let html = '';
+            currentEcoles.forEach((ecole, index) => {
+                const rank = index + 1;
+
+                // Filières
+                let filieresHtml = '';
+                ecole.filieres.forEach(f => {
+                    const cls = f.toLowerCase();
+                    filieresHtml += `<span class="filiere-tag ${cls}">${f}</span>`;
+                });
+
+                // Places
+                let placesHtml = '';
+                if (ecole.places.MP) placesHtml += `<span><strong>MP:</strong> ${ecole.places.MP}</span>`;
+                if (ecole.places.PSI) placesHtml += `<span><strong>PSI:</strong> ${ecole.places.PSI}</span>`;
+                if (ecole.places.TSI) placesHtml += `<span><strong>TSI:</strong> ${ecole.places.TSI}</span>`;
+
+                html += `
+                    <div class="ecole-card" onclick="openDetail('${ecole.id}')">
+                        <div class="ecole-rank">#${rank}</div>
+                        <div class="ecole-name">${ecole.nom}</div>
+                        <div class="ecole-acronyme">${ecole.acronyme}</div>
+                        <div class="ecole-ville"><i class="fas fa-map-marker-alt"></i> ${ecole.ville}</div>
+                        <div class="ecole-filieres">${filieresHtml}</div>
+                        <div class="ecole-places">${placesHtml}</div>
+                        <button class="btn-detail" onclick="event.stopPropagation();openDetail('${ecole.id}')">
+                            <i class="fas fa-arrow-right"></i> Voir les détails
+                        </button>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        // ============================================================
+        // 4. FILTRE ET RECHERCHE
+        // ============================================================
+        function filterEcoles() {
+            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+            const filiere = document.getElementById('filiereFilter').value;
+
+            currentEcoles = ECOLES_DATA.filter(ecole => {
+                // Recherche
+                let matchSearch = true;
+                if (search) {
+                    matchSearch = ecole.nom.toLowerCase().includes(search) ||
+                                  ecole.acronyme.toLowerCase().includes(search) ||
+                                  ecole.ville.toLowerCase().includes(search) ||
+                                  ecole.filieres.some(f => f.toLowerCase().includes(search)) ||
+                                  (ecole.description && ecole.description.toLowerCase().includes(search));
+                }
+
+                // Filtre filière
+                let matchFiliere = true;
+                if (filiere !== 'all') {
+                    matchFiliere = ecole.filieres.includes(filiere) &&
+                                   ecole.places[filiere] !== null &&
+                                   ecole.places[filiere] !== undefined;
+                }
+
+                return matchSearch && matchFiliere;
+            });
+
+            renderEcoles();
+        }
+
+        // ============================================================
+        // 5. OUVERTURE DU MODAL (Détail école)
+        // ============================================================
+        function openDetail(id) {
+            const ecole = ECOLES_DATA.find(e => e.id === id);
+            if (!ecole) return;
+
+            const modal = document.getElementById('modalOverlay');
+            const body = document.getElementById('modalBody');
+
+            // Filières
+            let filieresHtml = '';
+            ecole.filieres.forEach(f => {
+                const cls = f.toLowerCase();
+                filieresHtml += `<span class="filiere-tag ${cls}" style="display:inline-block;padding:2px 12px;border-radius:12px;font-size:0.7rem;font-weight:700;text-transform:uppercase;color:white;margin-right:4px;">${f}</span>`;
+            });
+
+            // Places
+            let placesHtml = '<tr><th>Filière</th><th>Places disponibles</th></tr>';
+            if (ecole.places.MP) placesHtml += `<tr><td><strong>MP</strong></td><td class="highlight">${ecole.places.MP}</td></tr>`;
+            if (ecole.places.PSI) placesHtml += `<tr><td><strong>PSI</strong></td><td class="highlight">${ecole.places.PSI}</td></tr>`;
+            if (ecole.places.TSI) placesHtml += `<tr><td><strong>TSI</strong></td><td class="highlight">${ecole.places.TSI}</td></tr>`;
+            if (ecole.total) placesHtml += `<tr><td><strong>Total</strong></td><td class="highlight">${ecole.total}</td></tr>`;
+
+            // Min/Max
+            let minmaxHtml = '';
+            if (ecole.minmax && ecole.minmax.MP && ecole.minmax.MP.min > 0) {
+                minmaxHtml = `
+                    <h3>📊 Classement MIN / MAX (MP)</h3>
+                    <table class="minmax-table">
+                        <thead><tr><th>Année</th><th>MIN</th><th>MAX</th></tr></thead>
+                        <tbody>
+                            <tr><td>2026</td><td>${ecole.minmax.MP.min}</td><td>${ecole.minmax.MP.max}</td></tr>
+                        </tbody>
+                    </table>
+                `;
+            }
+
+            // Filières détaillées (ENSIAS)
+            let filieresDetailHtml = '';
+            if (ecole.filieresDetails && ecole.filieresDetails.length > 0) {
+                let rows = '';
+                ecole.filieresDetails.forEach(f => {
+                    rows += `<tr><td>${f.nom}</td><td>${f.min}</td><td>${f.max}</td></tr>`;
+                });
+                filieresDetailHtml = `
+                    <h3>📋 Détail des filières</h3>
+                    <table class="minmax-table">
+                        <thead><tr><th>Filière</th><th>MIN</th><th>MAX</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                `;
+            }
+
+            // Débouchés
+            let debouchesHtml = '';
+            if (ecole.debouches && ecole.debouches.length > 0) {
+                let items = ecole.debouches.map(d => `<span style="display:inline-block;padding:4px 14px;border-radius:16px;background:var(--color-gray-100);color:var(--color-gray-700);margin:4px;font-size:0.85rem;">${d}</span>`).join('');
+                debouchesHtml = `
+                    <h3>💼 Débouchés</h3>
+                    <div>${items}</div>
+                `;
+            }
+
+            // Liens utiles
+            let liensHtml = '';
+            if (ecole.site) {
+                liensHtml += `<a href="${ecole.site}" target="_blank"><i class="fas fa-globe"></i> Site officiel</a>`;
+            }
+            if (ecole.brochure) {
+                liensHtml += `<a href="${ecole.brochure}" target="_blank"><i class="fas fa-file-pdf"></i> Brochure</a>`;
+            }
+
+            body.innerHTML = `
+                <div class="modal-title">${ecole.acronyme} - ${ecole.nom}</div>
+                <div class="modal-subtitle"><i class="fas fa-map-marker-alt"></i> ${ecole.ville}</div>
+                <div style="margin-bottom:12px;">${filieresHtml}</div>
+
+                <div class="modal-section">
+                    <h3>📖 Présentation</h3>
+                    <p>${ecole.description || 'Description à venir.'}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🎯 Places disponibles (CNC 2026)</h3>
+                    <table class="places-table">${placesHtml}</table>
+                </div>
+
+                ${minmaxHtml}
+
+                ${filieresDetailHtml}
+
+                <div class="modal-section">
+                    <h3>📊 Votre classement</h3>
+                    <div class="recommandation">
+                        <div class="range-input">
+                            <label>Entrez votre classement MP :</label>
+                            <input type="number" id="rankInput" placeholder="Ex: 150" />
+                            <button onclick="checkChance('${ecole.id}')">Vérifier</button>
+                        </div>
+                        <div class="result" id="resultChance"></div>
+                    </div>
+                </div>
+
+                ${debouchesHtml}
+
+                <div class="modal-section">
+                    <h3>🔗 Liens utiles</h3>
+                    <div class="liens-utiles">${liensHtml || 'À venir'}</div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ============================================================
+        // 6. FERMETURE DU MODAL
+        // ============================================================
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ============================================================
+        // 7. FONCTIONNALITÉ RECOMMANDATION
+        // ============================================================
+        function checkChance(id) {
+            const ecole = ECOLES_DATA.find(e => e.id === id);
+            if (!ecole) return;
+
+            const input = document.getElementById('rankInput');
+            const result = document.getElementById('resultChance');
+
+            const rank = parseInt(input.value);
+            if (isNaN(rank) || rank < 1) {
+                result.className = 'result';
+                result.style.display = 'block';
+                result.textContent = '⚠️ Veuillez entrer un classement valide (ex: 150).';
+                result.style.background = '#FEF3C7';
+                result.style.color = '#92400E';
+                return;
+            }
+
+            // Utiliser MIN/MAX de l'école
+            const min = ecole.minmax?.MP?.min || 0;
+            const max = ecole.minmax?.MP?.max || 0;
+
+            if (min === 0 && max === 0) {
+                result.className = 'result';
+                result.style.display = 'block';
+                result.textContent = 'ℹ️ Données de classement non disponibles pour cette école.';
+                result.style.background = '#E0E7FF';
+                result.style.color = '#3730A3';
+                return;
+            }
+
+            // Calculer la position dans la fourchette
+            const range = max - min;
+            const position = rank - min;
+            const percent = Math.max(0, Math.min(100, (position / range) * 100));
+
+            let niveau = '';
+            let couleur = '';
+            let message = '';
+            let fillColor = '';
+
+            if (rank <= min) {
+                niveau = 'Forte chance';
+                couleur = 'forte';
+                message = `✅ ${rank} — Vous êtes dans la fourchette haute ! Forte chance d'admission.`;
+                fillColor = 'forte';
+            } else if (rank <= min + range * 0.4) {
+                niveau = 'Bonne chance';
+                couleur = 'moyenne';
+                message = `📊 ${rank} — Vous êtes dans la fourchette moyenne. Bonne chance pour l'admission.`;
+                fillColor = 'moyenne';
+            } else if (rank <= max) {
+                niveau = 'Chance moyenne';
+                couleur = 'moyenne';
+                message = `📊 ${rank} — Vous êtes dans la fourchette basse. Chance moyenne d'admission.`;
+                fillColor = 'moyenne';
+            } else {
+                niveau = 'Faible chance';
+                couleur = 'faible';
+                message = `⚠️ ${rank} — Votre classement dépasse la fourchette admise. Faible chance d'admission.`;
+                fillColor = 'faible';
+            }
+
+            result.className = `result ${couleur}`;
+            result.style.display = 'block';
+            result.innerHTML = `
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+                    <span>${message}</span>
+                    <span style="font-size:1.2rem;">${niveau}</span>
+                </div>
+                <div class="chance-bar">
+                    <div class="fill ${fillColor}" style="width:${Math.min(100, 100 - percent)}%;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--color-gray-400);margin-top:4px;">
+                    <span>MIN: ${min}</span>
+                    <span>MAX: ${max}</span>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // 8. RECHERCHE AVEC ENTRÉE
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('searchInput');
+                if (document.activeElement === input) {
+                    filterEcoles();
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
