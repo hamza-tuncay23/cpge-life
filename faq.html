@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FAQ - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .faq-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .faq-page {
+            background: var(--color-gray-900);
+        }
+
+        .faq-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Catégories */
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .faq-categories .cat-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: 20px;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .faq-categories .cat-btn {
+            border-color: var(--color-gray-600);
+            color: var(--color-gray-400);
+        }
+
+        .faq-categories .cat-btn:hover {
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        .faq-categories .cat-btn.active {
+            border-color: var(--color-secondary);
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .faq-categories .cat-btn .badge {
+            background: var(--color-gray-200);
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--color-gray-600);
+            margin-left: 4px;
+        }
+
+        [data-theme="dark"] .faq-categories .cat-btn .badge {
+            background: var(--color-gray-700);
+            color: var(--color-gray-400);
+        }
+
+        .faq-categories .cat-btn.active .badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* Liste des FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .faq-item {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .faq-item:hover {
+            border-color: var(--color-secondary);
+        }
+
+        .faq-item .faq-question {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .faq-item .faq-question {
+            color: var(--color-white);
+        }
+
+        .faq-item .faq-question:hover {
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .faq-item .faq-question:hover {
+            background: var(--color-gray-700);
+        }
+
+        .faq-item .faq-question .faq-icon {
+            font-size: 0.8rem;
+            color: var(--color-secondary);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+
+        .faq-item .faq-question .faq-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .faq-item .faq-answer {
+            padding: 0 20px 16px;
+            display: none;
+            color: var(--color-gray-600);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        [data-theme="dark"] .faq-item .faq-answer {
+            color: var(--color-gray-400);
+        }
+
+        .faq-item .faq-answer.open {
+            display: block;
+        }
+
+        .faq-item .faq-answer a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .faq-item .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact rapide */
+        .faq-contact {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .faq-contact {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .faq-contact h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="dark"] .faq-contact h3 {
+            color: var(--color-white);
+        }
+
+        .faq-contact p {
+            color: var(--color-gray-500);
+            margin-bottom: 16px;
+        }
+
+        .faq-contact .btn {
+            padding: 10px 28px;
+        }
+
+        @media (max-width: 768px) {
+            .faq-page .page-title { font-size: 1.8rem; }
+            .faq-categories .cat-btn { font-size: 0.75rem; padding: 6px 14px; }
+            .faq-item .faq-question { font-size: 0.85rem; padding: 14px 16px; }
+            .faq-item .faq-answer { font-size: 0.85rem; padding: 0 16px 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .faq-page .page-title { font-size: 1.4rem; }
+            .faq-categories .cat-btn { font-size: 0.65rem; padding: 4px 10px; }
+            .faq-item .faq-question { font-size: 0.8rem; padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="#">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE FAQ -->
+    <!-- ============================================================ -->
+    <section class="faq-page">
+        <div class="container">
+
+            <h1 class="page-title">❓ Foire aux questions</h1>
+            <p class="page-subtitle">Toutes les réponses à vos questions sur CPGE Life</p>
+
+            <!-- Catégories -->
+            <div class="faq-categories" id="faqCategories">
+                <button class="cat-btn active" data-cat="all" onclick="filterFAQ('all')">
+                    🌐 Toutes <span class="badge">18</span>
+                </button>
+                <button class="cat-btn" data-cat="general" onclick="filterFAQ('general')">
+                    📌 Général <span class="badge">4</span>
+                </button>
+                <button class="cat-btn" data-cat="filieres" onclick="filterFAQ('filieres')">
+                    📐 Filières <span class="badge">5</span>
+                </button>
+                <button class="cat-btn" data-cat="cours" onclick="filterFAQ('cours')">
+                    📚 Cours <span class="badge">4</span>
+                </button>
+                <button class="cat-btn" data-cat="annales" onclick="filterFAQ('annales')">
+                    📜 Annales <span class="badge">3</span>
+                </button>
+                <button class="cat-btn" data-cat="compte" onclick="filterFAQ('compte')">
+                    👤 Compte <span class="badge">2</span>
+                </button>
+            </div>
+
+            <!-- Liste des FAQ -->
+            <div class="faq-list" id="faqList">
+
+                <!-- ===== CATÉGORIE : GÉNÉRAL ===== -->
+                <div class="faq-item" data-cat="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Qu'est-ce que CPGE Life ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        CPGE Life est une plateforme de référence pour les étudiants des Classes Préparatoires aux Grandes Écoles au Maroc. Elle regroupe des informations sur les établissements, les filières, des cours, des annales et une communauté d'entraide.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>CPGE Life est-il gratuit ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, CPGE Life est entièrement gratuit. Toutes les ressources (cours, annales, exercices) sont accessibles sans aucun frais.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Comment puis-je contribuer au site ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Vous pouvez contribuer en partageant vos cours, exercices ou annales. Contactez-nous via le <a href="contact.html">formulaire de contact</a> pour nous envoyer vos documents.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Qui gère CPGE Life ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        CPGE Life est géré par une équipe d'anciens préparationnaires passionnés par l'entraide et le partage de connaissances. Nous sommes ouverts à toute suggestion ou collaboration.
+                    </div>
+                </div>
+
+                <!-- ===== CATÉGORIE : FILIÈRES ===== -->
+                <div class="faq-item" data-cat="filieres">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Quelles sont les filières disponibles sur CPGE Life ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        CPGE Life propose 3 filières : <strong>MP</strong> (Mathématiques & Physique), <strong>PSI</strong> (Physique & Sciences de l'Ingénieur) et <strong>TSI</strong> (Technologies & Sciences Industrielles).
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="filieres">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Quelle filière choisir entre MP, PSI et TSI ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Le choix dépend de vos affinités :
+                        <br/><br/>
+                        <strong>MP</strong> : si vous aimez les mathématiques pures et la physique théorique.
+                        <br/>
+                        <strong>PSI</strong> : si vous êtes intéressé par la technologie, la mécanique et l'automatique.
+                        <br/>
+                        <strong>TSI</strong> : si vous venez d'une filière technologique et souhaitez poursuivre en école d'ingénieurs.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="filieres">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Quels concours sont accessibles après chaque filière ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>MP</strong> : X-ENS, Centrale, Mines Pont, CCINP, E3A, CNC, UM6P
+                        <br/>
+                        <strong>PSI</strong> : X-ENS, Centrale, Mines Pont, CCINP, E3A, CNC, UM6P (sauf ESI et INSEA)
+                        <br/>
+                        <strong>TSI</strong> : Centrale, CCINP, CNC, UM6P (sauf ESI et INSEA)
+                        <br/><br/>
+                        Consultez les pages dédiées pour plus de détails.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="filieres">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Quelles sont les différences entre SUP et SPE ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>SUP</strong> (1ère année) : le programme est commun à toutes les filières avec une base solide en mathématiques, physique et chimie.
+                        <br/>
+                        <strong>SPE</strong> (2ème année) : le programme se spécialise selon la filière choisie avec des cours plus approfondis et des concours en fin d'année.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="filieres">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Puis-je changer de filière entre SUP et SPE ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, il est possible de changer de filière en passant de SUP à SPE, sous certaines conditions. Cela dépend des établissements et de vos résultats. Renseignez-vous auprès de votre centre CPGE.
+                    </div>
+                </div>
+
+                <!-- ===== CATÉGORIE : COURS ===== -->
+                <div class="faq-item" data-cat="cours">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Comment accéder aux cours ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Rendez-vous dans la section <a href="documents.html">Documents</a>. Sélectionnez SUP ou SPE, puis votre filière, et naviguez dans les matières et modules pour trouver les cours.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="cours">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Les cours sont-ils complets ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Nous mettons à disposition des cours complets couvrant l'intégralité du programme. Des exercices corrigés, TD et DS sont également disponibles pour vous entraîner.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="cours">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Puis-je télécharger les cours en PDF ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, tous les cours, TD, DS et annales sont disponibles en téléchargement au format PDF.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="cours">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Les cours sont-ils à jour ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, nous mettons régulièrement à jour les cours et ressources selon les nouveaux programmes. N'hésitez pas à nous signaler tout document obsolète via le <a href="contact.html">formulaire de contact</a>.
+                    </div>
+                </div>
+
+                <!-- ===== CATÉGORIE : ANNALES ===== -->
+                <div class="faq-item" data-cat="annales">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Où trouver les annales des concours ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Les annales sont disponibles dans la section <a href="annales.html">Annales</a>. Sélectionnez une banque (X-ENS, CCS, CCMP, CCINP, E3A, CNC), puis une filière pour voir les épreuves par année.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="annales">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Quelles banques d'annales sont disponibles ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Nous proposons les banques suivantes : <strong>X-ENS</strong>, <strong>CCS</strong>, <strong>CCMP</strong>, <strong>CCINP</strong>, <strong>E3A</strong> et <strong>CNC</strong>.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="annales">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Les corrigés sont-ils disponibles ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Certains corrigés sont disponibles. Nous essayons d'en ajouter régulièrement. Si vous avez des corrigés à partager, n'hésitez pas à <a href="contact.html">nous contacter</a>.
+                    </div>
+                </div>
+
+                <!-- ===== CATÉGORIE : COMPTE ===== -->
+                <div class="faq-item" data-cat="compte">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Comment créer un compte sur CPGE Life ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Cliquez sur le bouton <strong>"Espace Membre"</strong> en haut de la page, puis sur <strong>"Inscription"</strong>. Remplissez le formulaire et validez. Vous recevrez un email de confirmation.
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="compte">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>À quoi sert l'espace membre ?</span>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        L'espace membre vous permet de :
+                        <br/>
+                        - 📚 Suivre votre historique des cours consultés
+                        <br/>
+                        - 📥 Accéder à vos téléchargements
+                        <br/>
+                        - ⭐ Sauvegarder vos favoris
+                        <br/>
+                        - ⚙️ Personnaliser vos préférences
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contact rapide -->
+            <div class="faq-contact">
+                <h3>❓ Vous n'avez pas trouvé votre réponse ?</h3>
+                <p>Contactez-nous directement, nous vous répondrons dans les plus brefs délais.</p>
+                <a href="contact.html" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Nous contacter
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // 2. TOGGLE FAQ
+        // ============================================================
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+
+            answer.classList.toggle('open');
+            if (icon) icon.classList.toggle('open');
+        }
+
+        // ============================================================
+        // 3. FILTRER PAR CATÉGORIE
+        // ============================================================
+        function filterFAQ(category) {
+            // Mettre à jour les boutons
+            document.querySelectorAll('.faq-categories .cat-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.cat === category);
+            });
+
+            // Filtrer les éléments
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (category === 'all' || item.dataset.cat === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

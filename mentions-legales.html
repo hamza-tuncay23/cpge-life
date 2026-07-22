@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mentions légales - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .mentions-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .mentions-page {
+            background: var(--color-gray-900);
+        }
+
+        .mentions-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mentions-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .mentions-content {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        [data-theme="dark"] .mentions-content {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .mentions-content h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-top: 28px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .mentions-content h2 {
+            color: var(--color-white);
+            border-bottom-color: var(--color-gray-700);
+        }
+
+        .mentions-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .mentions-content p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        [data-theme="dark"] .mentions-content p {
+            color: var(--color-gray-400);
+        }
+
+        .mentions-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 16px 0;
+        }
+
+        .mentions-content ul li {
+            padding: 6px 0 6px 24px;
+            color: var(--color-gray-600);
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        [data-theme="dark"] .mentions-content ul li {
+            color: var(--color-gray-400);
+        }
+
+        .mentions-content ul li::before {
+            content: "•";
+            color: var(--color-secondary);
+            font-weight: 700;
+            position: absolute;
+            left: 4px;
+        }
+
+        .mentions-content .highlight {
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .mentions-page .page-title { font-size: 1.8rem; }
+            .mentions-content { padding: 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .mentions-page .page-title { font-size: 1.4rem; }
+            .mentions-content { padding: 16px; }
+            .mentions-content h2 { font-size: 1.1rem; }
+            .mentions-content p, .mentions-content ul li { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="#">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE MENTIONS LÉGALES -->
+    <!-- ============================================================ -->
+    <section class="mentions-page">
+        <div class="container">
+
+            <h1 class="page-title">⚖️ Mentions légales</h1>
+            <p class="page-subtitle">Informations légales et conditions d'utilisation du site CPGE Life</p>
+
+            <div class="mentions-content">
+
+                <h2>1. Éditeur du site</h2>
+                <p>
+                    <strong>CPGE Life</strong> est une plateforme éducative en ligne.
+                </p>
+                <p>
+                    <strong>Propriétaire :</strong> Hamza Margal
+                    <br/>
+                    <strong>Email :</strong> <a href="mailto:bde.ltm.2026@gmail.com">bde.ltm.2026@gmail.com</a>
+                    <br/>
+                    <strong>Téléphone :</strong> +212 631-909130
+                </p>
+
+                <h2>2. Hébergement</h2>
+                <p>
+                    Le site CPGE Life est hébergé par <strong>GitHub Pages</strong>.
+                </p>
+
+                <h2>3. Propriété intellectuelle</h2>
+                <p>
+                    L'ensemble du contenu du site CPGE Life (textes, images, logos, cours, exercices, annales) est protégé par le droit d'auteur.
+                </p>
+                <ul>
+                    <li>Le contenu pédagogique est mis à disposition <strong>gratuitement</strong> pour les étudiants.</li>
+                    <li>La reproduction, distribution ou commercialisation des contenus sans autorisation est interdite.</li>
+                    <li>Les documents partagés par les utilisateurs restent la propriété de leurs auteurs.</li>
+                </ul>
+
+                <h2>4. Utilisation du site</h2>
+                <p>
+                    L'utilisation de CPGE Life est <strong>gratuite</strong> et ouverte à tous les étudiants et enseignants.
+                </p>
+                <ul>
+                    <li>Les utilisateurs s'engagent à utiliser le site à des fins <strong>éducatives</strong> uniquement.</li>
+                    <li>Toute utilisation commerciale est strictement interdite.</li>
+                    <li>Les utilisateurs ne peuvent pas télécharger de contenu illégal ou nuisible.</li>
+                </ul>
+
+                <h2>5. Contenu partagé par les utilisateurs</h2>
+                <ul>
+                    <li>Les utilisateurs sont seuls responsables du contenu qu'ils partagent.</li>
+                    <li>CPGE Life se réserve le droit de modérer ou supprimer tout contenu inapproprié.</li>
+                    <li>En partageant un document, l'utilisateur autorise CPGE Life à le diffuser sur la plateforme.</li>
+                </ul>
+
+                <h2>6. Limitation de responsabilité</h2>
+                <ul>
+                    <li>CPGE Life met tout en œuvre pour fournir des informations exactes, mais ne garantit pas l'exactitude ou l'exhaustivité des contenus.</li>
+                    <li>Les cours et exercices partagés sont fournis "tels quels" et CPGE Life ne peut être tenu responsable des erreurs éventuelles.</li>
+                    <li>Les utilisateurs sont invités à vérifier les informations auprès de leurs établissements officiels.</li>
+                </ul>
+
+                <h2>7. Liens externes</h2>
+                <p>
+                    CPGE Life peut contenir des liens vers des sites externes. Nous ne sommes pas responsables du contenu de ces sites ni de leurs pratiques de confidentialité.
+                </p>
+
+                <h2>8. Modification des mentions légales</h2>
+                <p>
+                    CPGE Life se réserve le droit de modifier ces mentions légales à tout moment. Les utilisateurs sont invités à les consulter régulièrement.
+                </p>
+
+                <h2>9. Contact</h2>
+                <p>
+                    Pour toute question concernant les mentions légales, vous pouvez nous contacter via le <a href="contact.html">formulaire de contact</a> ou par email à <a href="mailto:bde.ltm.2026@gmail.com">bde.ltm.2026@gmail.com</a>.
+                </p>
+
+                <p style="text-align:center;margin-top:30px;color:var(--color-gray-400);font-size:0.85rem;">
+                    Dernière mise à jour : 22 juillet 2026
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
