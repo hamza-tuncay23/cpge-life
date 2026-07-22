@@ -1,29 +1,265 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CPGE Life - Prépare ton avenir avec excellence</title>
-    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>CPGE Life</h1>
-        <p>Prépare ton avenir avec excellence.</p>
+
+    <!-- ============================================================ -->
+    <!-- 1. HEADER / NAVBAR -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <!-- Logo -->
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+
+            <!-- Menu -->
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Centres CPGE</a></li>
+                            <li><a href="#">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="#">MP - Maths & Physique</a></li>
+                            <li><a href="#">PSI - Physique & SI</a></li>
+                            <li><a href="#">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Cours</a></li>
+                            <li><a href="#">TD et DS</a></li>
+                            <li><a href="#">Extraits de concours</a></li>
+                            <li><a href="#">Drive complet</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">CNC</a></li>
+                            <li><a href="#">Banque CCINP</a></li>
+                            <li><a href="#">Banque Mines</a></li>
+                            <li><a href="#">Banque X-ENS</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#">Actualités</a></li>
+                    <li class="nav-item"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Actions -->
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <a href="#" class="btn-membre">
+                    <i class="fas fa-user"></i> Espace
+                </a>
+            </div>
+        </div>
     </header>
 
-    <!-- Hero -->
-    <section>
-        <h2>Bienvenue sur CPGE Life</h2>
-        <p>La plateforme de référence pour toutes les CPGE du Maroc</p>
+    <!-- ============================================================ -->
+    <!-- 2. HERO SECTION -->
+    <!-- ============================================================ -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Prépare ton<br/>
+                    <span class="hero-highlight">avenir avec excellence.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    La plateforme de référence pour toutes les CPGE du Maroc — 28 établissements,
+                    3 filières, des milliers de cours et une communauté d'étudiants passionnés.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-school"></i> Explorer les centres
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-book-open"></i> Voir les cours
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=600&h=400&fit=crop&crop=center" alt="Étudiants qui étudient"/>
+            </div>
+        </div>
     </section>
 
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+    <!-- ============================================================ -->
+    <!-- 3. STATISTIQUES -->
+    <!-- ============================================================ -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-count="28">0</span>
+                <span class="stat-label">Établissements</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="3">0</span>
+                <span class="stat-label">Filières</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="10000">0</span>
+                <span class="stat-label">Étudiants</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="2000">0</span>
+                <span class="stat-label">Ressources</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. COMPTE À REBOURS -->
+    <!-- ============================================================ -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-clock"></i> Prochains événements
+            </h2>
+            <div class="countdown-circles" id="countdownContainer">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5. CENTRES EN VEDETTE -->
+    <!-- ============================================================ -->
+    <section class="centres-section">
+        <div class="container">
+            <h2 class="section-title">Les meilleures CPGE du Maroc</h2>
+            <p class="section-subtitle">
+                28 établissements sélectionnés pour leur excellence académique,
+                leur taux d'admission et la qualité de l'encadrement.
+            </p>
+            <div class="centres-grid" id="centresGrid">
+                <!-- Généré par JavaScript -->
+            </div>
+            <div class="text-center">
+                <a href="#" class="btn btn-primary">Voir tous les classements</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6. FILIÈRES -->
+    <!-- ============================================================ -->
+    <section class="filieres-section">
+        <div class="container">
+            <h2 class="section-title">Choisir sa filière CPGE</h2>
+            <p class="section-subtitle">
+                3 filières, chacune avec ses spécificités, ses concours et ses débouchés.
+            </p>
+            <div class="filieres-grid" id="filieresGrid">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 7. TÉMOIGNAGES -->
+    <!-- ============================================================ -->
+    <section class="temoignages-section">
+        <div class="container">
+            <h2 class="section-title">Ils nous font confiance</h2>
+            <div class="temoignages-grid" id="temoignagesGrid">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 8. FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">
+                        "Construit avec ❤️ pour la communauté des préparationnaires marocains"
+                    </p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:bde.ltm.2026@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+212631909130">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#">Écoles</a>
+                <a href="#">Filières</a>
+                <a href="#">Documents</a>
+                <a href="#">Annales</a>
+                <a href="#">Actualités</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+                <a href="#">Mentions légales</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- ============================================================ -->
+    <!-- 9. SCRIPTS -->
+    <!-- ============================================================ -->
+    <script src="js/data.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 </html>
