@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Actualités - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES ACTUALITÉS
+           ============================================ */
+        .actu-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .actu-page {
+            background: var(--color-gray-900);
+        }
+
+        .actu-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .actu-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .actu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .actu-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .actu-card {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .actu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .actu-card .actu-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .actu-card .actu-body {
+            padding: 20px 24px 24px;
+        }
+
+        .actu-card .actu-body .actu-tag {
+            display: inline-block;
+            padding: 2px 14px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--color-secondary);
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .actu-card .actu-body .actu-tag.conseil { background: #4F46E5; }
+        .actu-card .actu-body .actu-tag.methodo { background: #06B6D4; }
+        .actu-card .actu-body .actu-tag.orientation { background: #F59E0B; }
+        .actu-card .actu-body .actu-tag.concours { background: #EF4444; }
+        .actu-card .actu-body .actu-tag.vie { background: #10B981; }
+
+        .actu-card .actu-body .actu-date {
+            font-size: 0.8rem;
+            color: var(--color-gray-400);
+            margin-bottom: 8px;
+        }
+
+        .actu-card .actu-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        [data-theme="dark"] .actu-card .actu-body h3 {
+            color: var(--color-white);
+        }
+
+        .actu-card .actu-body p {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .actu-card .actu-body .btn-lire {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .actu-card .actu-body .btn-lire:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .actu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .actu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actu-page .page-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .actu-page .page-title {
+                font-size: 1.4rem;
+            }
+
+            .actu-card .actu-body {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="#">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE ACTUALITÉS -->
+    <!-- ============================================================ -->
+    <section class="actu-page">
+        <div class="container">
+
+            <h1 class="page-title">📰 Actualités</h1>
+            <p class="page-subtitle">Toute l'actualité des CPGE, des concours et de la vie étudiante</p>
+
+            <div class="actu-grid">
+
+                <!-- Article 1 -->
+                <div class="actu-card">
+                    <div class="actu-image">📢</div>
+                    <div class="actu-body">
+                        <span class="actu-tag concours">Concours</span>
+                        <div class="actu-date">📅 15 juillet 2026</div>
+                        <h3>Résultats du CNC 2026 disponibles</h3>
+                        <p>Les résultats du Concours National Commun sont enfin disponibles. Découvrez les listes des admis...</p>
+                        <button class="btn-lire" onclick="alert('📄 Article complet à venir')">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="actu-card">
+                    <div class="actu-image">📅</div>
+                    <div class="actu-body">
+                        <span class="actu-tag methodo">Méthodologie</span>
+                        <div class="actu-date">📅 10 juillet 2026</div>
+                        <h3>Comment réussir ses khôlles ?</h3>
+                        <p>Découvrez les meilleures stratégies pour aborder les interrogations orales en prépa...</p>
+                        <button class="btn-lire" onclick="alert('📄 Article complet à venir')">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="actu-card">
+                    <div class="actu-image">🏫</div>
+                    <div class="actu-body">
+                        <span class="actu-tag orientation">Orientation</span>
+                        <div class="actu-date">📅 1 juillet 2026</div>
+                        <h3>Portes ouvertes UM6P - Inscriptions</h3>
+                        <p>L'Université Mohammed VI Polytechnique ouvre ses portes pour la rentrée 2026...</p>
+                        <button class="btn-lire" onclick="alert('📄 Article complet à venir')">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="actu-card">
+                    <div class="actu-image">📝</div>
+                    <div class="actu-body">
+                        <span class="actu-tag concours">Concours</span>
+                        <div class="actu-date">📅 20 juin 2026</div>
+                        <h3>Dates des concours 2027</h3>
+                        <p>Le calendrier des concours pour l'année 2027 vient d'être publié par le ministère...</p>
+                        <button class="btn-lire" onclick="alert('📄 Article complet à venir')">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="actu-card">
+                    <div class="actu-image">🎓</div>
+                    <div class="actu-body">
+                        <span class="actu-tag vie">Vie étudiante</span>
+                        <div class="actu-date">📅 15 juin 2026</div>
+                        <h3>Le BDE de Tanger organise une conférence</h3>
+                        <p>Le Bureau des Étudiants de Tanger organise une conférence sur les métiers de l'ingénierie...</p>
+                        <button class="btn-lire" onclick="alert('📄 Article complet à venir')">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="actu-card">
+                    <div class="actu-image">📚</div>
+                    <div class="actu-body">
+                        <span class="actu-tag conseil">Conseil</span>
+                        <div class="actu-date">📅 5 juin 2026</div>
+                        <h3>Les erreurs à éviter en prépa</h3>
+                        <p>Les anciens préparationnaires partagent leurs conseils pour éviter les pièges en CPGE...</p>
+                        <button class="btn-lire" onclick="alert('📄 Article complet à venir')">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

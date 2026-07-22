@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES CONTACT
+           ============================================ */
+        .contact-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .contact-page {
+            background: var(--color-gray-900);
+        }
+
+        .contact-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* ===== FORMULAIRE ===== */
+        .contact-form {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .contact-form {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .contact-form h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="dark"] .contact-form h3 {
+            color: var(--color-white);
+        }
+
+        .contact-form .form-subtitle {
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .contact-form .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-700);
+            margin-bottom: 6px;
+        }
+
+        [data-theme="dark"] .contact-form .form-group label {
+            color: var(--color-gray-300);
+        }
+
+        .contact-form .form-group label .required {
+            color: #EF4444;
+        }
+
+        .contact-form .form-group input,
+        .contact-form .form-group select,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        [data-theme="dark"] .contact-form .form-group input,
+        [data-theme="dark"] .contact-form .form-group select,
+        [data-theme="dark"] .contact-form .form-group textarea {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .contact-form .form-group input:focus,
+        .contact-form .form-group select:focus,
+        .contact-form .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .contact-form .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .contact-form .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-form .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .contact-form .form-success {
+            display: none;
+            padding: 16px;
+            background: #D1FAE5;
+            border-radius: var(--radius-sm);
+            color: #065F46;
+            font-weight: 600;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .contact-form .form-error {
+            display: none;
+            padding: 16px;
+            background: #FEE2E2;
+            border-radius: var(--radius-sm);
+            color: #991B1B;
+            font-weight: 600;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        /* ===== INFOS ===== */
+        .contact-infos {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-infos .info-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .contact-infos .info-card {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .contact-infos .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-infos .info-card .info-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--color-secondary);
+        }
+
+        .contact-infos .info-card h4 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .contact-infos .info-card h4 {
+            color: var(--color-white);
+        }
+
+        .contact-infos .info-card p {
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .contact-infos .info-card a {
+            color: var(--color-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-infos .info-card a:hover {
+            color: var(--color-secondary-light);
+        }
+
+        .contact-infos .info-card .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .contact-infos .info-card .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-gray-100);
+            color: var(--color-gray-700);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .contact-infos .info-card .social-links a {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .contact-infos .info-card .social-links a:hover {
+            background: var(--color-secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-page .page-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+
+            .contact-infos .info-card {
+                padding: 18px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-page .page-title {
+                font-size: 1.4rem;
+            }
+
+            .contact-form {
+                padding: 16px;
+            }
+
+            .contact-form .form-group input,
+            .contact-form .form-group select,
+            .contact-form .form-group textarea {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="#">Grandes Écoles Maroc</a></li>
+                            <li><a href="#">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE CONTACT -->
+    <!-- ============================================================ -->
+    <section class="contact-page">
+        <div class="container">
+
+            <h1 class="page-title">📧 Contactez-nous</h1>
+            <p class="page-subtitle">Une question, une suggestion ? N'hésitez pas à nous écrire !</p>
+
+            <div class="contact-grid">
+
+                <!-- ===== FORMULAIRE ===== -->
+                <div class="contact-form">
+                    <h3>Envoyez un message</h3>
+                    <p class="form-subtitle">Nous vous répondrons dans les plus brefs délais.</p>
+
+                    <form id="contactForm" onsubmit="sendMessage(event)">
+                        <div class="form-group">
+                            <label for="contactName">Nom complet <span class="required">*</span></label>
+                            <input type="text" id="contactName" placeholder="Votre nom et prénom" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Email <span class="required">*</span></label>
+                            <input type="email" id="contactEmail" placeholder="votre@email.com" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">Sujet <span class="required">*</span></label>
+                            <select id="contactSubject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="question">❓ Question générale</option>
+                                <option value="suggestion">💡 Suggestion</option>
+                                <option value="bug">🐛 Signalement d'un bug</option>
+                                <option value="partenariat">🤝 Partenariat</option>
+                                <option value="autre">📝 Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Message <span class="required">*</span></label>
+                            <textarea id="contactMessage" placeholder="Votre message..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Envoyer le message
+                        </button>
+
+                        <div class="form-success" id="formSuccess">
+                            ✅ Message envoyé avec succès ! Nous vous répondrons rapidement.
+                        </div>
+
+                        <div class="form-error" id="formError">
+                            ❌ Une erreur est survenue. Veuillez réessayer.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ===== INFOS ===== -->
+                <div class="contact-infos">
+
+                    <div class="info-card">
+                        <div class="info-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>
+                            <a href="mailto:bde.ltm.2026@gmail.com">bde.ltm.2026@gmail.com</a>
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <h4>Téléphone</h4>
+                        <p>
+                            <a href="tel:+212631909130">+212 631-909130</a>
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🌐</div>
+                        <h4>Suivez-nous</h4>
+                        <p>Restez connecté avec nous sur les réseaux sociaux</p>
+                        <div class="social-links">
+                            <a href="https://instagram.com/ctrlaltstudy" target="_blank" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank" title="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:bde.ltm.2026@gmail.com" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="tel:+212631909130" title="Téléphone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🕐</div>
+                        <h4>Disponibilité</h4>
+                        <p>Nous sommes disponibles 7j/7 pour vous répondre.</p>
+                        <p style="font-size:0.85rem;color:var(--color-gray-400);">
+                            Réponse garantie sous 48h.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // 2. ENVOI DU FORMULAIRE
+        // ============================================================
+        function sendMessage(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('submitBtn');
+            const success = document.getElementById('formSuccess');
+            const error = document.getElementById('formError');
+
+            // Désactiver le bouton
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+
+            // Cacher les messages précédents
+            success.style.display = 'none';
+            error.style.display = 'none';
+
+            // Récupérer les données
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value.trim();
+
+            // Simuler l'envoi (remplacer par un vrai appel API plus tard)
+            setTimeout(function() {
+                // Simuler une réussite (95% de chance)
+                if (Math.random() > 0.05) {
+                    success.style.display = 'block';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    error.style.display = 'block';
+                }
+
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+            }, 1500);
+
+            // Pour le moment, afficher les données dans la console
+            console.log('📧 Message envoyé :', { name, email, subject, message });
+        }
+    </script>
+
+</body>
+</html>
