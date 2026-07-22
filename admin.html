@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <style>
+        /* ============================================
+           STYLES ADMIN
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0F172A;
+            color: #E2E8F0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Admin */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .admin-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4F46E5, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .admin-header .badge {
+            background: #10B981;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .admin-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-actions .btn-export {
+            background: #4F46E5;
+            color: white;
+        }
+
+        .admin-actions .btn-export:hover {
+            background: #6366F1;
+            transform: translateY(-2px);
+        }
+
+        .admin-actions .btn-import {
+            background: #F59E0B;
+            color: #0F172A;
+        }
+
+        .admin-actions .btn-import:hover {
+            background: #FBBF24;
+            transform: translateY(-2px);
+        }
+
+        .admin-actions .btn-copy {
+            background: #06B6D4;
+            color: white;
+        }
+
+        .admin-actions .btn-copy:hover {
+            background: #22D3EE;
+            transform: translateY(-2px);
+        }
+
+        /* Auth Form */
+        .auth-form {
+            max-width: 400px;
+            margin: 80px auto;
+            background: #1E293B;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+        }
+
+        .auth-form h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .auth-form p {
+            color: #94A3B8;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .auth-form label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: #CBD5E1;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            background: #0F172A;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            transition: border 0.3s ease;
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: #4F46E5;
+        }
+
+        .auth-form .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4F46E5, #06B6D4);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-form .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+        }
+
+        .auth-form .error {
+            color: #EF4444;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: none;
+        }
+
+        .stats-admin {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #1E293B;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .stat-card .label {
+            color: #94A3B8;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .stat-card .edit-btn {
+            margin-top: 12px;
+            padding: 6px 16px;
+            background: transparent;
+            border: 1px solid #4F46E5;
+            color: #4F46E5;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card .edit-btn:hover {
+            background: #4F46E5;
+            color: white;
+        }
+
+        /* Sections */
+        .section-admin {
+            background: #1E293B;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .section-admin .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            background: #0F172A;
+            border-bottom: 1px solid #334155;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section-admin .section-header:hover {
+            background: #1E293B;
+        }
+
+        .section-admin .section-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-admin .section-header .toggle-icon {
+            color: #94A3B8;
+            transition: transform 0.3s ease;
+        }
+
+        .section-admin .section-header .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .section-admin .section-body {
+            padding: 24px;
+            display: none;
+            overflow-x: auto;
+        }
+
+        .section-admin .section-body.open {
+            display: block;
+        }
+
+        .section-admin .section-body pre {
+            background: #0F172A;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+            color: #CBD5E1;
+            border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .section-admin .section-body .json-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .section-admin .section-body .json-actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section-admin .section-body .json-actions .btn-edit-json {
+            background: #4F46E5;
+            color: white;
+        }
+
+        .section-admin .section-body .json-actions .btn-edit-json:hover {
+            background: #6366F1;
+        }
+
+        .section-admin .section-body .json-actions .btn-copy-json {
+            background: #06B6D4;
+            color: white;
+        }
+
+        .section-admin .section-body .json-actions .btn-copy-json:hover {
+            background: #22D3EE;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: none;
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+        }
+
+        .toast.success {
+            background: #10B981;
+            color: white;
+        }
+
+        .toast.error {
+            background: #EF4444;
+            color: white;
+        }
+
+        .toast.info {
+            background: #4F46E5;
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-admin {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .admin-actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .admin-actions button {
+                flex: 1;
+                justify-content: center;
+                font-size: 0.75rem;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-admin {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-form {
+                padding: 24px;
+                margin: 40px auto;
+            }
+
+            .section-admin .section-body {
+                padding: 12px;
+            }
+
+            .section-admin .section-body pre {
+                font-size: 0.65rem;
+                max-height: 250px;
+            }
+        }
+
+        /* Import file input */
+        .file-input-wrapper {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ============================================================ -->
+        <!-- FORMULAIRE D'AUTHENTIFICATION -->
+        <!-- ============================================================ -->
+        <div id="authForm" class="auth-form">
+            <h2>🔐 Accès Admin</h2>
+            <p>Entrez vos identifiants pour accéder au tableau de bord</p>
+
+            <label for="adminEmail">Email</label>
+            <input type="email" id="adminEmail" placeholder="bde.ltm.2026@gmail.com" value="bde.ltm.2026@gmail.com" />
+
+            <label for="adminPassword">Mot de passe</label>
+            <input type="password" id="adminPassword" placeholder="Entrez votre mot de passe" />
+
+            <button class="btn-login" onclick="login()">Se connecter</button>
+
+            <div id="loginError" class="error">❌ Email ou mot de passe incorrect</div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DASHBOARD ADMIN -->
+        <!-- ============================================================ -->
+        <div id="dashboard" class="dashboard">
+
+            <!-- Header -->
+            <div class="admin-header">
+                <div>
+                    <h1>📊 Tableau de bord Admin</h1>
+                    <span class="badge">🔒 Session active</span>
+                </div>
+                <div class="admin-actions">
+                    <button class="btn-export" onclick="exportAllData()">
+                        <i class="fas fa-download"></i> Exporter JSON
+                    </button>
+                    <button class="btn-import" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-upload"></i> Importer JSON
+                    </button>
+                    <input type="file" id="fileInput" accept=".json" style="display:none" onchange="importData(event)" />
+                    <button class="btn-copy" onclick="copyAllData()">
+                        <i class="fas fa-copy"></i> Copier tout
+                    </button>
+                    <button class="btn-export" style="background:#EF4444;" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistiques -->
+            <div class="stats-admin" id="statsAdmin">
+                <!-- Généré par JavaScript -->
+            </div>
+
+            <!-- Sections -->
+            <div id="sectionsContainer">
+                <!-- Généré par JavaScript -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+
+        // ============================================================
+        // 1. IDENTIFIANTS ADMIN
+        // ============================================================
+        const ADMIN_CREDENTIALS = {
+            email: "bde.ltm.2026@gmail.com",
+            password: "Hamza@2005"
+        };
+
+        // ============================================================
+        // 2. DONNÉES (copie des données du site)
+        // ============================================================
+        let siteData = {
+            stats: {
+                etablissements: 28,
+                filieres: 3,
+                etudiants: "10K+",
+                ressources: "2K+"
+            },
+            filieres: [
+                {
+                    id: "mp",
+                    nom: "MP",
+                    titre: "Maths & Physique",
+                    matieres: ["Mathématiques", "Physique", "Informatique"],
+                    banques: ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+                    couleur: "#4F46E5",
+                    icone: "📐",
+                    tauxReussite: 79.2
+                },
+                {
+                    id: "psi",
+                    nom: "PSI",
+                    titre: "Physique & Sciences de l'Ingénieur",
+                    matieres: ["Physique", "Chimie", "Sciences de l'Ingénieur"],
+                    banques: ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+                    couleur: "#06B6D4",
+                    icone: "🔧",
+                    tauxReussite: 88.4
+                },
+                {
+                    id: "tsi",
+                    nom: "TSI",
+                    titre: "Technologies & Sciences Industrielles",
+                    matieres: ["Génie Électrique", "Génie Mécanique", "Physique"],
+                    banques: ["CCINP", "Centrale", "CNC", "UM6P"],
+                    couleur: "#F59E0B",
+                    icone: "⚙️",
+                    tauxReussite: 86.2
+                }
+            ],
+            evenements: [
+                { id: "x-ens", nom: "X-ENS", date: "2027-04-12T07:00:00", icone: "🎓", couleur: "#EF4444" },
+                { id: "mines", nom: "Mines", date: "2027-04-19T07:00:00", icone: "⛏️", couleur: "#F59E0B" },
+                { id: "ccinp", nom: "CCINP", date: "2027-04-26T07:00:00", icone: "📝", couleur: "#10B981" },
+                { id: "centrale", nom: "Centrale", date: "2027-05-03T07:00:00", icone: "⚡", couleur: "#3B82F6" },
+                { id: "cnc", nom: "CNC", date: "2027-05-21T08:00:00", icone: "🏆", couleur: "#8B5CF6" }
+            ],
+            temoignages: [
+                {
+                    nom: "Yasmine El Amrani",
+                    etablissement: "CPGE Ibn Ghazi, Rabat",
+                    filiere: "MP",
+                    annee: "2ème année",
+                    texte: "CPGE Life m'a aidée à trouver les meilleurs cours de maths..."
+                },
+                {
+                    nom: "Mehdi Benali",
+                    etablissement: "CPGE Moulay Youssef, Rabat",
+                    filiere: "PC",
+                    annee: "1ère année",
+                    texte: "J'ai découvert ma filière grâce au guide d'orientation..."
+                },
+                {
+                    nom: "Fatima-Zahra Tazi",
+                    etablissement: "CPGE Al Khawarizmi, Casablanca",
+                    filiere: "ECG",
+                    annee: "2ème année",
+                    texte: "La communauté est incroyable. On s'entraide entre préparationnaires..."
+                }
+            ],
+            centresVedette: [
+                { id: "lmy-ra", nom: "Lycée Moulay Youssef", sigle: "LMY-Ra", ville: "Rabat", filieres: ["MP", "PSI"], eleves: 291, taux: "93.5% (MP), 84.1% (PSI)", classement: "#1" },
+                { id: "lmv-ca", nom: "Lycée Mohammed V", sigle: "LMV-Ca", ville: "Casablanca", filieres: ["MP", "PSI"], eleves: 262, taux: "91.0% (MP), 88.2% (PSI)", classement: "#2" },
+                { id: "lit-ma", nom: "Lycée Ibn Timiya", sigle: "LIT-Ma", ville: "Marrakech", filieres: ["MP", "PSI"], eleves: 281, taux: "94.7% (MP), 91.1% (PSI)", classement: "#3" },
+                { id: "ltm-mo", nom: "Lycée Technique", sigle: "LTM-Mo", ville: "Mohammedia", filieres: ["MP", "TSI"], eleves: 119, taux: "82.1% (MP), 81.3% (TSI)", classement: "#4" },
+                { id: "lrs-ag", nom: "Lycée Reda Slaoui", sigle: "LRS-Ag", ville: "Agadir", filieres: ["MP", "PSI", "TSI"], eleves: 203, taux: "88.0% (MP), 92.9% (PSI), 90.8% (TSI)", classement: "#5" },
+                { id: "lmi-fe", nom: "Lycée Moulay Idriss", sigle: "LMI-Fe", ville: "Fès", filieres: ["MP", "PSI"], eleves: 198, taux: "91.9% (MP), 85.7% (PSI)", classement: "#6" }
+            ]
+        };
+
+        // ============================================================
+        // 3. AUTHENTIFICATION
+        // ============================================================
+        function login() {
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value.trim();
+            const errorEl = document.getElementById('loginError');
+
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                errorEl.style.display = 'none';
+                document.getElementById('authForm').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                renderDashboard();
+                showToast('✅ Connexion réussie !', 'success');
+            } else {
+                errorEl.style.display = 'block';
+                showToast('❌ Email ou mot de passe incorrect', 'error');
+            }
+        }
+
+        function logout() {
+            document.getElementById('authForm').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            showToast('🔒 Déconnexion réussie', 'info');
+        }
+
+        // Enter key pour login
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const authForm = document.getElementById('authForm');
+                if (authForm.style.display !== 'none') {
+                    login();
+                }
+            }
+        });
+
+        // ============================================================
+        // 4. RENDER DASHBOARD
+        // ============================================================
+        function renderDashboard() {
+            renderStats();
+            renderSections();
+        }
+
+        function renderStats() {
+            const container = document.getElementById('statsAdmin');
+            const stats = siteData.stats;
+
+            container.innerHTML = `
+                <div class="stat-card">
+                    <div class="number">${stats.etablissements}</div>
+                    <div class="label">🏫 Établissements</div>
+                    <button class="edit-btn" onclick="editStat('etablissements')">✏️ Modifier</button>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.filieres}</div>
+                    <div class="label">📐 Filières</div>
+                    <button class="edit-btn" onclick="editStat('filieres')">✏️ Modifier</button>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.etudiants}</div>
+                    <div class="label">👨‍🎓 Étudiants</div>
+                    <button class="edit-btn" onclick="editStat('etudiants')">✏️ Modifier</button>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.ressources}</div>
+                    <div class="label">📄 Ressources</div>
+                    <button class="edit-btn" onclick="editStat('ressources')">✏️ Modifier</button>
+                </div>
+            `;
+        }
+
+        function renderSections() {
+            const container = document.getElementById('sectionsContainer');
+
+            const sections = [
+                { id: 'filieres', label: '📐 Filières', data: siteData.filieres },
+                { id: 'evenements', label: '⏰ Événements', data: siteData.evenements },
+                { id: 'temoignages', label: '💬 Témoignages', data: siteData.temoignages },
+                { id: 'centres', label: '🏫 Centres en vedette', data: siteData.centresVedette }
+            ];
+
+            container.innerHTML = sections.map(function(section) {
+                return `
+                    <div class="section-admin">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <h3>${section.label}</h3>
+                            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="section-body">
+                            <pre id="json-${section.id}">${JSON.stringify(section.data, null, 2)}</pre>
+                            <div class="json-actions">
+                                <button class="btn-edit-json" onclick="editJSON('${section.id}')">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </button>
+                                <button class="btn-copy-json" onclick="copySectionJSON('${section.id}')">
+                                    <i class="fas fa-copy"></i> Copier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ============================================================
+        // 5. SECTION TOGGLE
+        // ============================================================
+        function toggleSection(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            body.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        // ============================================================
+        // 6. ÉDITION DES STATISTIQUES
+        // ============================================================
+        function editStat(key) {
+            const currentValue = siteData.stats[key];
+            const newValue = prompt(`Modifier "${key}" :`, currentValue);
+
+            if (newValue !== null && newValue.trim() !== '') {
+                // Si c'est un nombre, le convertir
+                if (!isNaN(newValue) && newValue.trim() !== '') {
+                    siteData.stats[key] = Number(newValue);
+                } else {
+                    siteData.stats[key] = newValue.trim();
+                }
+                renderStats();
+                showToast(`✅ Statistique "${key}" modifiée !`, 'success');
+                updateAllData();
+            }
+        }
+
+        // ============================================================
+        // 7. ÉDITION DES SECTIONS JSON
+        // ============================================================
+        function editJSON(sectionId) {
+            const pre = document.getElementById(`json-${sectionId}`);
+            const currentJSON = pre.textContent;
+
+            const newJSON = prompt(`Modifier la section "${sectionId}" :`, currentJSON);
+
+            if (newJSON !== null && newJSON.trim() !== '') {
+                try {
+                    const parsed = JSON.parse(newJSON);
+                    // Mettre à jour les données
+                    const sectionMap = {
+                        'filieres': 'filieres',
+                        'evenements': 'evenements',
+                        'temoignages': 'temoignages',
+                        'centres': 'centresVedette'
+                    };
+                    const key = sectionMap[sectionId];
+                    if (key) {
+                        siteData[key] = parsed;
+                        pre.textContent = JSON.stringify(parsed, null, 2);
+                        showToast(`✅ Section "${sectionId}" modifiée !`, 'success');
+                        updateAllData();
+                        renderStats();
+                    }
+                } catch (e) {
+                    showToast('❌ JSON invalide ! Vérifiez le format.', 'error');
+                }
+            }
+        }
+
+        // ============================================================
+        // 8. COPIER UNE SECTION
+        // ============================================================
+        function copySectionJSON(sectionId) {
+            const pre = document.getElementById(`json-${sectionId}`);
+            const text = pre.textContent;
+
+            navigator.clipboard.writeText(text).then(function() {
+                showToast(`📋 JSON de "${sectionId}" copié !`, 'success');
+            }).catch(function() {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast(`📋 JSON de "${sectionId}" copié !`, 'success');
+            });
+        }
+
+        // ============================================================
+        // 9. EXPORTER TOUTES LES DONNÉES
+        // ============================================================
+        function exportAllData() {
+            const json = JSON.stringify(siteData, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cpge-life-data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('📥 Données exportées avec succès !', 'success');
+        }
+
+        // ============================================================
+        // 10. IMPORTER DES DONNÉES
+        // ============================================================
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    // Vérifier que les données sont valides
+                    if (data.stats && data.filieres && data.evenements) {
+                        siteData = data;
+                        renderDashboard();
+                        showToast('✅ Données importées avec succès !', 'success');
+                        updateAllData();
+                    } else {
+                        showToast('❌ Fichier JSON invalide !', 'error');
+                    }
+                } catch (err) {
+                    showToast('❌ Erreur lors de la lecture du fichier', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ============================================================
+        // 11. COPIER TOUTES LES DONNÉES
+        // ============================================================
+        function copyAllData() {
+            const json = JSON.stringify(siteData, null, 2);
+
+            navigator.clipboard.writeText(json).then(function() {
+                showToast('📋 Toutes les données copiées dans le presse-papiers !', 'success');
+            }).catch(function() {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = json;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('📋 Toutes les données copiées dans le presse-papiers !', 'success');
+            });
+        }
+
+        // ============================================================
+        // 12. METTRE À JOUR LE FICHIER DATA.JS (instructions)
+        // ============================================================
+        function updateAllData() {
+            // Afficher les instructions pour mettre à jour data.js
+            const json = JSON.stringify(siteData, null, 2);
+
+            // Stocker dans localStorage pour persistance
+            localStorage.setItem('cpgeLifeAdminData', json);
+
+            showToast('💡 N\'oubliez pas de copier les modifications dans data.js sur GitHub !', 'info');
+        }
+
+        // ============================================================
+        // 13. TOAST NOTIFICATION
+        // ============================================================
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.style.display = 'block';
+
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(function() {
+                toast.style.display = 'none';
+            }, 4000);
+        }
+
+        // ============================================================
+        // 14. CHARGEMENT INITIAL
+        // ============================================================
+        // Vérifier si des données sont stockées dans localStorage
+        const savedData = localStorage.getItem('cpgeLifeAdminData');
+        if (savedData) {
+            try {
+                const parsed = JSON.parse(savedData);
+                if (parsed.stats && parsed.filieres) {
+                    siteData = parsed;
+                }
+            } catch (e) {}
+        }
+
+        // Vérifier si l'admin est déjà connecté (session)
+        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            document.getElementById('authForm').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            renderDashboard();
+        }
+
+        // Sauvegarder la session lors de la connexion
+        const originalLogin = login;
+        login = function() {
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value.trim();
+            const errorEl = document.getElementById('loginError');
+
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                errorEl.style.display = 'none';
+                document.getElementById('authForm').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                renderDashboard();
+                showToast('✅ Connexion réussie !', 'success');
+            } else {
+                errorEl.style.display = 'block';
+                showToast('❌ Email ou mot de passe incorrect', 'error');
+            }
+        };
+
+        // Déconnexion
+        const originalLogout = logout;
+        logout = function() {
+            document.getElementById('authForm').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            sessionStorage.removeItem('adminLoggedIn');
+            showToast('🔒 Déconnexion réussie', 'info');
+        };
+
+    </script>
+
+</body>
+</html>
