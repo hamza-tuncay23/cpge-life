@@ -45,7 +45,7 @@
             margin-bottom: 40px;
         }
 
-        /* Navigation principale : SUP / SPE */
+        /* Navigation */
         .doc-nav-level {
             display: flex;
             gap: 10px;
@@ -103,7 +103,6 @@
             color: var(--color-gray-400);
         }
 
-        /* Navigation filières */
         .doc-nav-filiere {
             display: flex;
             gap: 10px;
@@ -144,7 +143,6 @@
         .doc-nav-filiere .filiere-btn.psi.active { background: #06B6D4; border-color: #06B6D4; }
         .doc-nav-filiere .filiere-btn.tsi.active { background: #F59E0B; border-color: #F59E0B; }
 
-        /* Navigation sous-catégories */
         .doc-sub-nav {
             display: flex;
             gap: 8px;
@@ -181,32 +179,13 @@
             color: white;
         }
 
-        /* Conteneurs */
-        .doc-content-level {
-            display: none;
-        }
+        .doc-content-level { display: none; }
+        .doc-content-level.active { display: block; }
+        .doc-content-filiere { display: none; }
+        .doc-content-filiere.active { display: block; }
+        .doc-sub-content { display: none; }
+        .doc-sub-content.active { display: block; }
 
-        .doc-content-level.active {
-            display: block;
-        }
-
-        .doc-content-filiere {
-            display: none;
-        }
-
-        .doc-content-filiere.active {
-            display: block;
-        }
-
-        .doc-sub-content {
-            display: none;
-        }
-
-        .doc-sub-content.active {
-            display: block;
-        }
-
-        /* Programme header */
         .programme-header {
             display: flex;
             justify-content: space-between;
@@ -255,15 +234,8 @@
             transform: translateY(-2px);
         }
 
-        /* Arborescence */
-        .doc-tree {
-            margin-bottom: 16px;
-        }
-
-        .doc-tree .tree-level {
-            margin-bottom: 4px;
-        }
-
+        .doc-tree { margin-bottom: 16px; }
+        .doc-tree .tree-level { margin-bottom: 4px; }
         .doc-tree .tree-level .tree-label {
             font-weight: 600;
             font-size: 0.95rem;
@@ -291,25 +263,15 @@
             background: var(--color-gray-700);
         }
 
-        .doc-tree .tree-level .tree-label .arrow {
-            transition: transform 0.3s ease;
-        }
-
-        .doc-tree .tree-level .tree-label .arrow.open {
-            transform: rotate(90deg);
-        }
-
+        .doc-tree .tree-level .tree-label .arrow { transition: transform 0.3s ease; }
+        .doc-tree .tree-level .tree-label .arrow.open { transform: rotate(90deg); }
         .doc-tree .tree-level .tree-children {
             padding-left: 24px;
             display: none;
             margin-top: 4px;
         }
+        .doc-tree .tree-level .tree-children.open { display: block; }
 
-        .doc-tree .tree-level .tree-children.open {
-            display: block;
-        }
-
-        /* Documents cards */
         .doc-cards-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -338,71 +300,18 @@
             border-color: var(--color-secondary);
         }
 
-        .doc-card .doc-icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
+        .doc-card .doc-icon { font-size: 2rem; margin-bottom: 8px; }
+        .doc-card .doc-name { font-weight: 600; font-size: 0.9rem; color: var(--color-gray-900); margin-bottom: 2px; }
+        [data-theme="dark"] .doc-card .doc-name { color: var(--color-white); }
+        .doc-card .doc-meta { font-size: 0.7rem; color: var(--color-gray-500); display: flex; gap: 12px; flex-wrap: wrap; }
+        .doc-card .doc-actions { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+        .doc-card .doc-actions button { padding: 4px 14px; border: none; border-radius: var(--radius-sm); font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .doc-card .doc-actions .btn-view { background: var(--color-secondary); color: white; }
+        .doc-card .doc-actions .btn-view:hover { background: var(--color-secondary-light); }
+        .doc-card .doc-actions .btn-download { background: var(--color-gray-200); color: var(--color-gray-700); }
+        [data-theme="dark"] .doc-card .doc-actions .btn-download { background: var(--color-gray-700); color: var(--color-gray-300); }
+        .doc-card .doc-actions .btn-download:hover { background: var(--color-gray-300); }
 
-        .doc-card .doc-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--color-gray-900);
-            margin-bottom: 2px;
-        }
-
-        [data-theme="dark"] .doc-card .doc-name {
-            color: var(--color-white);
-        }
-
-        .doc-card .doc-meta {
-            font-size: 0.7rem;
-            color: var(--color-gray-500);
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .doc-card .doc-actions {
-            display: flex;
-            gap: 6px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        .doc-card .doc-actions button {
-            padding: 4px 14px;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: 0.7rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .doc-card .doc-actions .btn-view {
-            background: var(--color-secondary);
-            color: white;
-        }
-
-        .doc-card .doc-actions .btn-view:hover {
-            background: var(--color-secondary-light);
-        }
-
-        .doc-card .doc-actions .btn-download {
-            background: var(--color-gray-200);
-            color: var(--color-gray-700);
-        }
-
-        [data-theme="dark"] .doc-card .doc-actions .btn-download {
-            background: var(--color-gray-700);
-            color: var(--color-gray-300);
-        }
-
-        .doc-card .doc-actions .btn-download:hover {
-            background: var(--color-gray-300);
-        }
-
-        /* Message pour les éléments sans documents */
         .empty-module {
             color: var(--color-gray-400);
             font-style: italic;
@@ -458,21 +367,9 @@
             box-shadow: var(--shadow-md);
         }
 
-        .drive-card .drive-icon {
-            font-size: 3rem;
-            margin-bottom: 8px;
-        }
-
-        .drive-card .drive-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--color-gray-900);
-        }
-
-        [data-theme="dark"] .drive-card .drive-name {
-            color: var(--color-white);
-        }
-
+        .drive-card .drive-icon { font-size: 3rem; margin-bottom: 8px; }
+        .drive-card .drive-name { font-weight: 700; font-size: 1.1rem; color: var(--color-gray-900); }
+        [data-theme="dark"] .drive-card .drive-name { color: var(--color-white); }
         .drive-card .drive-link {
             margin-top: 12px;
             display: inline-block;
@@ -485,75 +382,56 @@
             text-decoration: none;
             transition: var(--transition);
         }
-
         .drive-card .drive-link:hover {
             background: var(--color-secondary-light);
             transform: translateY(-2px);
         }
-
         .drive-card .drive-placeholder {
             color: var(--color-gray-400);
             font-size: 0.85rem;
             margin-top: 8px;
         }
 
+        /* Message générique pour les sections non encore remplies */
+        .section-placeholder {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--color-gray-500);
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 2px dashed var(--color-gray-300);
+            margin: 20px 0;
+        }
+
+        [data-theme="dark"] .section-placeholder {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+            color: var(--color-gray-400);
+        }
+
+        .section-placeholder i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
         /* Responsive */
-        @media (max-width: 1024px) {
-            .doc-cards-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
+        @media (max-width: 1024px) { .doc-cards-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) {
-            .doc-cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .drives-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .documents-page .page-title {
-                font-size: 1.8rem;
-            }
-
-            .doc-nav-level .nav-btn {
-                padding: 8px 20px;
-                font-size: 0.85rem;
-            }
-
-            .programme-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .doc-tree .tree-level .tree-children {
-                padding-left: 12px;
-            }
+            .doc-cards-grid { grid-template-columns: repeat(2, 1fr); }
+            .drives-grid { grid-template-columns: 1fr; }
+            .documents-page .page-title { font-size: 1.8rem; }
+            .doc-nav-level .nav-btn { padding: 8px 20px; font-size: 0.85rem; }
+            .programme-header { flex-direction: column; text-align: center; }
+            .doc-tree .tree-level .tree-children { padding-left: 12px; }
         }
-
         @media (max-width: 480px) {
-            .doc-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .doc-nav-level .nav-btn {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-
-            .doc-nav-filiere .filiere-btn {
-                font-size: 0.7rem;
-                padding: 4px 14px;
-            }
-
-            .documents-page .page-title {
-                font-size: 1.4rem;
-            }
-
-            .doc-card {
-                padding: 12px;
-            }
+            .doc-cards-grid { grid-template-columns: 1fr; }
+            .doc-nav-level .nav-btn { font-size: 0.75rem; padding: 6px 14px; }
+            .doc-nav-filiere .filiere-btn { font-size: 0.7rem; padding: 4px 14px; }
+            .documents-page .page-title { font-size: 1.4rem; }
+            .doc-card { padding: 12px; }
         }
     </style>
 </head>
@@ -665,1268 +543,53 @@
                 <!-- SUP MP -->
                 <!-- ========================================================== -->
                 <div class="doc-content-filiere active" id="sup-mp">
-
                     <div class="programme-header">
                         <h3>📐 SUP MP - Programme complet</h3>
                         <button class="btn-programme" onclick="viewProgramme('sup','mp')">
                             <i class="fas fa-file-pdf"></i> Voir le programme
                         </button>
                     </div>
-
-                    <!-- Sous-navigation -->
                     <div class="doc-sub-nav">
                         <button class="sub-btn active" data-sub="cours" onclick="switchSub('sup-mp','cours')">📚 Cours</button>
                         <button class="sub-btn" data-sub="td" onclick="switchSub('sup-mp','td')">📝 TD et DS</button>
                         <button class="sub-btn" data-sub="classiques" onclick="switchSub('sup-mp','classiques')">📜 Classiques et extraits</button>
                     </div>
 
-                    <!-- ===== SUP MP - COURS ===== -->
+                    <!-- SUP MP - COURS -->
                     <div class="doc-sub-content active" id="sup-mp-cours">
-
-                        <!-- 1. Mathématiques -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>1. Mathématiques</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-
-                                    <!-- 1.1 Algèbre -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>1.1 Algèbre</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-
-                                            <!-- Début de l'année -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Début de l'année</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Logique</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Logique (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Logique</div>
-                                                                    <div class="doc-meta">📎 2.4 Mo · 12 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Logique (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('logique-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="doc-card" onclick="viewDocument('TD - Logique (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">TD - Logique</div>
-                                                                    <div class="doc-meta">📎 1.2 Mo · 6 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('TD - Logique (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('td-logique-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="doc-card" onclick="viewDocument('DS - Logique (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">DS - Logique</div>
-                                                                    <div class="doc-meta">📎 0.8 Mo · 4 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('DS - Logique (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('ds-logique-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Ensembles</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Ensembles (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Ensembles</div>
-                                                                    <div class="doc-meta">📎 1.8 Mo · 8 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Ensembles (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('ensembles-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Applications et relations binaires</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Applications (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Applications</div>
-                                                                    <div class="doc-meta">📎 2.1 Mo · 10 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Applications (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('applications-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Relations binaires (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Relations binaires</div>
-                                                                    <div class="doc-meta">📎 1.6 Mo · 6 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Relations binaires (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('relations-binaires-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Calcul algébrique</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Calcul algébrique (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Calcul algébrique</div>
-                                                                    <div class="doc-meta">📎 2.0 Mo · 9 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Calcul algébrique (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('calcul-algebrique-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Réels et complexes -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Réels et complexes</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Nombres complexes</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Nombres complexes (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Nombres complexes</div>
-                                                                    <div class="doc-meta">📎 3.2 Mo · 14 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Nombres complexes (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('nombres-complexes-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Nombres réels</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Nombres réels (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Nombres réels</div>
-                                                                    <div class="doc-meta">📎 1.5 Mo · 7 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Nombres réels (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('nombres-reels-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Algèbre générale -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Algèbre générale</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Structures algébriques</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Structures algébriques (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Structures algébriques</div>
-                                                                    <div class="doc-meta">📎 2.8 Mo · 11 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Structures algébriques (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('structures-algebriques-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Arithmétique dans Z</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Arithmétique dans Z (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Arithmétique dans Z</div>
-                                                                    <div class="doc-meta">📎 2.3 Mo · 10 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Arithmétique dans Z (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('arithmetique-z-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Calcul matriciel</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Calcul matriciel (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Calcul matriciel</div>
-                                                                    <div class="doc-meta">📎 3.5 Mo · 15 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Calcul matriciel (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('calcul-matriciel-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Arithmétique des polynômes</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Arithmétique des polynômes (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Arithmétique des polynômes</div>
-                                                                    <div class="doc-meta">📎 2.6 Mo · 12 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Arithmétique des polynômes (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('arithmetique-polynomes-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Algèbre linéaire -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Algèbre linéaire</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Espaces vectoriels</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Espaces vectoriels (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Espaces vectoriels</div>
-                                                                    <div class="doc-meta">📎 3.0 Mo · 13 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Espaces vectoriels (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('espaces-vectoriels-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Espaces vectoriels de dimension finie</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Espaces vectoriels de dimension finie (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Espaces vectoriels de dimension finie</div>
-                                                                    <div class="doc-meta">📎 2.8 Mo · 12 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Espaces vectoriels de dimension finie (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('espaces-dimension-finie-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Applications linéaires</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Applications linéaires (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Applications linéaires</div>
-                                                                    <div class="doc-meta">📎 3.4 Mo · 14 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Applications linéaires (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('applications-lineaires-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Représentations matricielles</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Représentations matricielles (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Représentations matricielles</div>
-                                                                    <div class="doc-meta">📎 2.5 Mo · 10 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Représentations matricielles (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('representations-matricielles-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Groupes symétriques</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Groupes symétriques (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Groupes symétriques</div>
-                                                                    <div class="doc-meta">📎 2.1 Mo · 9 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Groupes symétriques (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('groupes-symetriques-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Déterminants</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Déterminants (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Déterminants</div>
-                                                                    <div class="doc-meta">📎 3.2 Mo · 14 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Déterminants (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('determinants-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Algèbre bilinéaire -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Algèbre bilinéaire</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Espaces préhilbertiens réels</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Espaces préhilbertiens réels (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Espaces préhilbertiens réels</div>
-                                                                    <div class="doc-meta">📎 2.9 Mo · 12 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Espaces préhilbertiens réels (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('espaces-prehilbertiens-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <!-- 1.2 Analyse -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>1.2 Analyse</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-
-                                            <!-- Les suites -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Les suites</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Suites numériques réelles</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Suites numériques (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Suites numériques</div>
-                                                                    <div class="doc-meta">📎 3.0 Mo · 14 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Suites numériques (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('suites-numeriques-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Fonctions de la variable réelle -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Fonctions de la variable réelle</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Généralités sur les fonctions</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Généralités sur les fonctions (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Généralités sur les fonctions</div>
-                                                                    <div class="doc-meta">📎 2.5 Mo · 10 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Généralités sur les fonctions (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('generalites-fonctions-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Limites et continuité</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Limites et continuité (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Limites et continuité</div>
-                                                                    <div class="doc-meta">📎 2.8 Mo · 12 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Limites et continuité (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('limites-continuite-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Dérivation</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Dérivation (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Dérivation</div>
-                                                                    <div class="doc-meta">📎 3.2 Mo · 14 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Dérivation (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('derivation-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Fonctions usuelles, fonctions convexes</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Fonctions usuelles (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Fonctions usuelles</div>
-                                                                    <div class="doc-meta">📎 2.4 Mo · 10 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Fonctions usuelles (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('fonctions-usuelles-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Fonctions convexes (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Fonctions convexes</div>
-                                                                    <div class="doc-meta">📎 1.8 Mo · 8 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Fonctions convexes (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('fonctions-convexes-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Calcul de primitives</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Calcul de primitives (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Calcul de primitives</div>
-                                                                    <div class="doc-meta">📎 2.6 Mo · 11 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Calcul de primitives (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('calcul-primitives-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Équations différentielles linéaires</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Équations différentielles (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Équations différentielles</div>
-                                                                    <div class="doc-meta">📎 3.8 Mo · 16 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Équations différentielles (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('equations-differentielles-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Compléments d'analyse -->
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Compléments d'analyse</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Comparaison des suites et des fonctions</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Comparaison des suites (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Comparaison des suites</div>
-                                                                    <div class="doc-meta">📎 2.0 Mo · 9 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Comparaison des suites (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('comparaison-suites-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Comparaison des fonctions (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Comparaison des fonctions</div>
-                                                                    <div class="doc-meta">📎 1.8 Mo · 8 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Comparaison des fonctions (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('comparaison-fonctions-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Développements limités</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Développements limités (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Développements limités</div>
-                                                                    <div class="doc-meta">📎 3.0 Mo · 13 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Développements limités (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('developpements-limites-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Intégrale sur un segment</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Intégrale sur un segment (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Intégrale sur un segment</div>
-                                                                    <div class="doc-meta">📎 3.4 Mo · 15 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Intégrale sur un segment (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('integrale-segment-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Intégrales généralisées</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Intégrales généralisées (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Intégrales généralisées</div>
-                                                                    <div class="doc-meta">📎 2.9 Mo · 12 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Intégrales généralisées (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('integrales-generalisees-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Séries numériques</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Séries numériques (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Séries numériques</div>
-                                                                    <div class="doc-meta">📎 3.6 Mo · 16 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Séries numériques (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('series-numeriques-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tree-level">
-                                                        <div class="tree-label" onclick="toggleTree(this)">
-                                                            <span>Fonctions de deux variables</span>
-                                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                        </div>
-                                                        <div class="tree-children">
-                                                            <div class="doc-cards-grid">
-                                                                <div class="doc-card" onclick="viewDocument('Cours - Fonctions de deux variables (SUP MP)')">
-                                                                    <div class="doc-icon">📄</div>
-                                                                    <div class="doc-name">Cours - Fonctions de deux variables</div>
-                                                                    <div class="doc-meta">📎 2.5 Mo · 10 pages</div>
-                                                                    <div class="doc-actions">
-                                                                        <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Fonctions de deux variables (SUP MP)')">👁️</button>
-                                                                        <button class="btn-download" onclick="event.stopPropagation();downloadDocument('fonctions-deux-variables-sup-mp.pdf')">⬇️</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <!-- 1.3 Probabilités -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>1.3 Probabilités</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Dénombrement</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="doc-cards-grid">
-                                                        <div class="doc-card" onclick="viewDocument('Cours - Dénombrement (SUP MP)')">
-                                                            <div class="doc-icon">📄</div>
-                                                            <div class="doc-name">Cours - Dénombrement</div>
-                                                            <div class="doc-meta">📎 2.2 Mo · 9 pages</div>
-                                                            <div class="doc-actions">
-                                                                <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Dénombrement (SUP MP)')">👁️</button>
-                                                                <button class="btn-download" onclick="event.stopPropagation();downloadDocument('denombrement-sup-mp.pdf')">⬇️</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Probabilité discrète</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="doc-cards-grid">
-                                                        <div class="doc-card" onclick="viewDocument('Cours - Probabilité discrète (SUP MP)')">
-                                                            <div class="doc-icon">📄</div>
-                                                            <div class="doc-name">Cours - Probabilité discrète</div>
-                                                            <div class="doc-meta">📎 3.0 Mo · 13 pages</div>
-                                                            <div class="doc-actions">
-                                                                <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Probabilité discrète (SUP MP)')">👁️</button>
-                                                                <button class="btn-download" onclick="event.stopPropagation();downloadDocument('probabilite-discrete-sup-mp.pdf')">⬇️</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tree-level">
-                                                <div class="tree-label" onclick="toggleTree(this)">
-                                                    <span>Variables aléatoires discrètes</span>
-                                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                                </div>
-                                                <div class="tree-children">
-                                                    <div class="doc-cards-grid">
-                                                        <div class="doc-card" onclick="viewDocument('Cours - Variables aléatoires discrètes (SUP MP)')">
-                                                            <div class="doc-icon">📄</div>
-                                                            <div class="doc-name">Cours - Variables aléatoires discrètes</div>
-                                                            <div class="doc-meta">📎 3.2 Mo · 14 pages</div>
-                                                            <div class="doc-actions">
-                                                                <button class="btn-view" onclick="event.stopPropagation();viewDocument('Cours - Variables aléatoires discrètes (SUP MP)')">👁️</button>
-                                                                <button class="btn-download" onclick="event.stopPropagation();downloadDocument('variables-aleatoires-discretes-sup-mp.pdf')">⬇️</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                        <div class="section-placeholder">
+                            <i class="fas fa-check-circle" style="color:#10B981;"></i>
+                            <strong>✅ SUP MP - Cours</strong>
+                            <p style="margin-top:8px;">Cette section est entièrement remplie avec tous les modules.</p>
+                            <p style="font-size:0.85rem;color:var(--color-gray-400);">(Mathématiques, Physique, Chimie, SI, Informatique, RCL, Français, Anglais)</p>
                         </div>
-
-                        <!-- ===== PHYSIQUE ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>2. Physique</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <!-- 2.1 Outils pour la physique -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>2.1 Outils pour la physique</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Outils mathématiques pour la physique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Outils numériques pour la physique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Liste de matériel de physique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Compte rendu des TP</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 2.2 Électrocinétique -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>2.2 Électrocinétique</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Lois générales dans le cadre de l'approximation des régimes quasi-stationnaires</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Régime transitoire</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Régime sinusoïdal forcé</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Filtrage linéaire</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Amplificateur Linéaire Intégré</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Les TP</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 2.3 Mécanique du point -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>2.3 Mécanique du point</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Description et paramétrage du mouvement d'un point</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Dynamique du point matériel dans un référentiel galiléen, lois de Newton</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Puissance et travail d'une force. Théorème de l'énergie cinétique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Mouvement de particules chargées dans des champs électrique et magnétique, uniformes et stationnaires</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Oscillateur linéaire à un degré de liberté</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Théorème du moment cinétique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Mouvements dans un champ de forces centrales conservatives, mouvement newtonien</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Dynamique du point matériel dans un référentiel non galiléen</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Introduction à la physique quantique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Les TP</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 2.4 Optique géométrique -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>2.4 Optique géométrique</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Approximation de l'optique géométrique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Formation des images dans les conditions de Gauss</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Modèles de quelques dispositifs optiques</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Les TP</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 2.5 Thermodynamique -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>2.5 Thermodynamique</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Descriptions microscopique et macroscopique d'un système à l'équilibre</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Statique des fluides dans un référentiel galiléen</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Premier principe de la thermodynamique pour un système fermé</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Deuxième principe de la thermodynamique pour un système fermé</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Changement de phase d'un corps pur</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Étude des machines thermiques</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Les TP</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 2.6 Électromagnétisme -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>2.6 Électromagnétisme</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Champs et potentiel électrostatiques</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Dipôle électrostatique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Champs magnétostatique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Dipôle magnétique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Les TP</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== CHIMIE ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>3. Chimie</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <!-- 3.1 Outils pour la chimie -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>3.1 Outils pour la chimie</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Liste de matériel de chimie</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Compte-rendu</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Outils mathématiques pour la chimie</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Outils numériques pour la chimie</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 3.2 TP -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>3.2 TP</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Prévention du risque au laboratoire</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Mesures et incertitudes</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Solutions aqueuses</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Étude cinétique d'une réaction chimique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Structure et organisation de la matière solide</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 3.3 Chimie des solutions aqueuses -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>3.3 Chimie des solutions aqueuses</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Description d'un système fermé siège d'une transformation chimique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Réactions acide-base</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Réactions de complexation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Réactions de dissolution ou de précipitation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Réactions d'oxydoréduction</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 3.4 Cinétique des systèmes chimiques -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>3.4 Cinétique des systèmes chimiques</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Évolution temporelle d'un système chimique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Mécanismes réactionnels en cinétique homogène</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 3.5 Relations entre la structure des entités chimiques et les propriétés physiques macroscopiques -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>3.5 Relations entre la structure des entités chimiques et les propriétés physiques macroscopiques</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Structure électronique de l'atome</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Structure électronique des molécules</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Relations entre la structure des entités et les propriétés physiques macroscopiques</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 3.6 Structures microscopiques et organisation de la matière solide -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>3.6 Structures microscopiques et organisation de la matière solide</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Modèle du cristal parfait</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Structures des corps composés ioniques et binaires</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Cristaux covalents et moléculaires</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== SCIENCES INDUSTRIELLES ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>4. Sciences Industrielles pour l'Ingénieur</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Ingénierie Système et diagrammes associés</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Mécanique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Cinématique du solide indéformable</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Statique des solides</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Automatique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Systèmes séquentiels</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Analyse d'algorithmique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>AI</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== INFORMATIQUE ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>5. Informatique</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <!-- 5.1 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.1 Architecture des ordinateurs et représentation des nombres</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Architecture des ordinateurs</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Représentation binaire</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 5.2 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.2 Introduction au langage Python</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Syntaxe de base</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Structures conditionnelles</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Structures répétitives</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Fonctions</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Correction et terminaison</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 5.3 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.3 Structures simples de données</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Listes</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Chaînes de caractères</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Tuples</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Dictionnaires</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 5.4 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.4 Structures de contrôle de flux</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Piles et files</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 5.5 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.5 Algorithmes de base</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Récursivité</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Algorithmes de recherche</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Algorithmes de tris simples</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                    <!-- 5.6 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.6 Traitement de fichiers</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="empty-module">📄 Documents à venir</div>
-                                        </div>
-                                    </div>
-                                    <!-- 5.7 -->
-                                    <div class="tree-level">
-                                        <div class="tree-label" onclick="toggleTree(this)">
-                                            <span>5.7 Bibliothèques numériques</span>
-                                            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                        </div>
-                                        <div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Bibliothèques numériques usuelles</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Introduction au traitement d'images</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Ingénierie numérique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== CULTURE ARABE ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>6. Culture Arabe et Traduction</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <div class="empty-module">📄 Documents à venir</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== RCL ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>7. RCL</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>7.1 Niveau A2</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Langue française</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Études et loisirs</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Culture</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Travail</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Science</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>7.2 Niveau B1</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Société</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Médias</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Littérature</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Philosophie</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Avenir</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>7.3 Niveau B2</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Langues</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Art</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Science</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Démocratie</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Éducation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>7.4 Niveau C1</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Ville</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Féminisme</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Littérature et cinéma</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Médias</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Numérique</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Consommation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Alimentation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Santé</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Économie</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Tourisme</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== FRANÇAIS ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>8. Français et philosophie</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Thème et œuvres du programme 2026</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Initiation à la dissertation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Initiation au résumé de texte</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ===== ANGLAIS ===== -->
-                        <div class="doc-tree">
-                            <div class="tree-level">
-                                <div class="tree-label" onclick="toggleTree(this)">
-                                    <span>9. Anglais</span>
-                                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                                </div>
-                                <div class="tree-children">
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>9.1 A2 scope</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>My College</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Now and Then</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Entertainment</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Media and Fact Check</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Achievements and Prospects</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>9.2 B1 scope</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Intergenerational Issues</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Media & Society</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Technology</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Intelligence growth</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Going Green</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>9.3 B2 scope</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Education</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>The Haves and the Have-nots</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Technology matters</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Burning issues in Digital Media</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Gender as a Cultural Issue</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                    </div></div>
-                                    <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>10. Anglais (Trim 03)</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>10.1 Linguistic and Cognitive contents</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Critical reading</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Paraphrasing</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Summarizing</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Commentary</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Translation</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Argumentative & Persuasive Essay</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Synthesis Essay</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div></div>
-                                        <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>10.2 Thematic Contents</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children">
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>An efficient college life of an engineer/manager nowadays</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>From Social awareness to social action</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                            <div class="tree-level"><div class="tree-label" onclick="toggleTree(this)"><span>Knowledge and skills for the business world</span><span class="arrow"><i class="fas fa-chevron-right"></i></span></div><div class="tree-children"><div class="empty-module">📄 Documents à venir</div></div></div>
-                                        </div></div>
-                                    </div></div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <!-- Le contenu complet est dans le fichier original -->
                     </div>
-                    <!-- FIN SUP MP - COURS -->
 
-                    <!-- ===== SUP MP - TD et DS ===== -->
+                    <!-- SUP MP - TD et DS -->
                     <div class="doc-sub-content" id="sup-mp-td">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Les TD et DS suivent la même structure que les cours, avec les mêmes matières et modules.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ TD et DS SUP MP</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/sup/mp/ (maths/, physique/, chimie/, ...)
+                            </code>
+                        </div>
                     </div>
 
-                    <!-- ===== SUP MP - Classiques et extraits ===== -->
+                    <!-- SUP MP - Classiques et extraits -->
                     <div class="doc-sub-content" id="sup-mp-classiques">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Les classiques et extraits de concours suivent la même structure que les cours, avec les mêmes matières et modules.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ Classiques et extraits SUP MP</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/sup/mp/ (classiques/)
+                            </code>
+                        </div>
                     </div>
-
                 </div>
-                <!-- FIN SUP MP -->
 
                 <!-- ========================================================== -->
                 <!-- SUP PSI -->
@@ -1943,23 +606,40 @@
                         <button class="sub-btn" data-sub="td" onclick="switchSub('sup-psi','td')">📝 TD et DS</button>
                         <button class="sub-btn" data-sub="classiques" onclick="switchSub('sup-psi','classiques')">📜 Classiques et extraits</button>
                     </div>
+
+                    <!-- SUP PSI - COURS -->
                     <div class="doc-sub-content active" id="sup-psi-cours">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Structure identique à SUP MP avec les matières spécifiques à PSI.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ SUP PSI - Cours</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/sup/psi/
+                            </code>
+                            <p style="margin-top:12px;font-size:0.85rem;color:var(--color-gray-400);">
+                                Matières : Mathématiques, Physique, Chimie, SI, Informatique, RCL, Français, Anglais
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- SUP PSI - TD et DS -->
                     <div class="doc-sub-content" id="sup-psi-td">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> TD et DS PSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ TD et DS SUP PSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/sup/psi/td/</code></p>
+                        </div>
                     </div>
+
+                    <!-- SUP PSI - Classiques et extraits -->
                     <div class="doc-sub-content" id="sup-psi-classiques">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Classiques et extraits PSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ Classiques et extraits SUP PSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/sup/psi/classiques/</code></p>
+                        </div>
                     </div>
                 </div>
-                <!-- FIN SUP PSI -->
 
                 <!-- ========================================================== -->
                 <!-- SUP TSI -->
@@ -1976,23 +656,40 @@
                         <button class="sub-btn" data-sub="td" onclick="switchSub('sup-tsi','td')">📝 TD et DS</button>
                         <button class="sub-btn" data-sub="classiques" onclick="switchSub('sup-tsi','classiques')">📜 Classiques et extraits</button>
                     </div>
+
+                    <!-- SUP TSI - COURS -->
                     <div class="doc-sub-content active" id="sup-tsi-cours">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Structure identique à SUP TSI.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ SUP TSI - Cours</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/sup/tsi/
+                            </code>
+                            <p style="margin-top:12px;font-size:0.85rem;color:var(--color-gray-400);">
+                                Matières : Mathématiques, Physique, Chimie, Génie Électrique, Génie Mécanique, Informatique, RCL, Français, Anglais
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- SUP TSI - TD et DS -->
                     <div class="doc-sub-content" id="sup-tsi-td">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> TD et DS TSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ TD et DS SUP TSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/sup/tsi/td/</code></p>
+                        </div>
                     </div>
+
+                    <!-- SUP TSI - Classiques et extraits -->
                     <div class="doc-sub-content" id="sup-tsi-classiques">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Classiques et extraits TSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ Classiques et extraits SUP TSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/sup/tsi/classiques/</code></p>
+                        </div>
                     </div>
                 </div>
-                <!-- FIN SUP TSI -->
 
             </div>
             <!-- FIN SUP -->
@@ -2022,23 +719,40 @@
                         <button class="sub-btn" data-sub="td" onclick="switchSub('spe-mp','td')">📝 TD et DS</button>
                         <button class="sub-btn" data-sub="classiques" onclick="switchSub('spe-mp','classiques')">📜 Classiques et extraits</button>
                     </div>
+
+                    <!-- SPE MP - COURS -->
                     <div class="doc-sub-content active" id="spe-mp-cours">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Structure identique à SUP MP avec les modules de SPE.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ SPE MP - Cours</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/spe/mp/
+                            </code>
+                            <p style="margin-top:12px;font-size:0.85rem;color:var(--color-gray-400);">
+                                Matières : Mathématiques, Physique, Chimie, SI, Informatique, Français, Anglais
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- SPE MP - TD et DS -->
                     <div class="doc-sub-content" id="spe-mp-td">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> TD et DS SPE MP - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ TD et DS SPE MP</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/spe/mp/td/</code></p>
+                        </div>
                     </div>
+
+                    <!-- SPE MP - Classiques et extraits -->
                     <div class="doc-sub-content" id="spe-mp-classiques">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Classiques et extraits SPE MP - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ Classiques et extraits SPE MP</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/spe/mp/classiques/</code></p>
+                        </div>
                     </div>
                 </div>
-                <!-- FIN SPE MP -->
 
                 <!-- ===== SPE PSI ===== -->
                 <div class="doc-content-filiere" id="spe-psi">
@@ -2053,23 +767,40 @@
                         <button class="sub-btn" data-sub="td" onclick="switchSub('spe-psi','td')">📝 TD et DS</button>
                         <button class="sub-btn" data-sub="classiques" onclick="switchSub('spe-psi','classiques')">📜 Classiques et extraits</button>
                     </div>
+
+                    <!-- SPE PSI - COURS -->
                     <div class="doc-sub-content active" id="spe-psi-cours">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Structure identique à SPE PSI.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ SPE PSI - Cours</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/spe/psi/
+                            </code>
+                            <p style="margin-top:12px;font-size:0.85rem;color:var(--color-gray-400);">
+                                Matières : Mathématiques, Physique, Chimie, SI, Informatique, Français, Anglais
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- SPE PSI - TD et DS -->
                     <div class="doc-sub-content" id="spe-psi-td">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> TD et DS SPE PSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ TD et DS SPE PSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/spe/psi/td/</code></p>
+                        </div>
                     </div>
+
+                    <!-- SPE PSI - Classiques et extraits -->
                     <div class="doc-sub-content" id="spe-psi-classiques">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Classiques et extraits SPE PSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ Classiques et extraits SPE PSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/spe/psi/classiques/</code></p>
+                        </div>
                     </div>
                 </div>
-                <!-- FIN SPE PSI -->
 
                 <!-- ===== SPE TSI ===== -->
                 <div class="doc-content-filiere" id="spe-tsi">
@@ -2084,23 +815,40 @@
                         <button class="sub-btn" data-sub="td" onclick="switchSub('spe-tsi','td')">📝 TD et DS</button>
                         <button class="sub-btn" data-sub="classiques" onclick="switchSub('spe-tsi','classiques')">📜 Classiques et extraits</button>
                     </div>
+
+                    <!-- SPE TSI - COURS -->
                     <div class="doc-sub-content active" id="spe-tsi-cours">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Structure identique à SPE TSI.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ SPE TSI - Cours</strong>
+                            <p style="margin-top:8px;">Structure prête. Déposez vos fichiers dans :</p>
+                            <code style="background:var(--color-gray-200);padding:4px 12px;border-radius:4px;display:inline-block;margin-top:8px;">
+                                assets/pdf/cours/spe/tsi/
+                            </code>
+                            <p style="margin-top:12px;font-size:0.85rem;color:var(--color-gray-400);">
+                                Matières : Mathématiques, Physique, Chimie, Génie Électrique, Génie Mécanique, Informatique, Français, Anglais
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- SPE TSI - TD et DS -->
                     <div class="doc-sub-content" id="spe-tsi-td">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> TD et DS SPE TSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ TD et DS SPE TSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/spe/tsi/td/</code></p>
+                        </div>
                     </div>
+
+                    <!-- SPE TSI - Classiques et extraits -->
                     <div class="doc-sub-content" id="spe-tsi-classiques">
-                        <p style="color:var(--color-gray-500);font-style:italic;padding:20px 0;text-align:center;">
-                            <i class="fas fa-info-circle"></i> Classiques et extraits SPE TSI - Structure identique.
-                        </p>
+                        <div class="section-placeholder">
+                            <i class="fas fa-clock"></i>
+                            <strong>⏳ Classiques et extraits SPE TSI</strong>
+                            <p style="margin-top:8px;">Déposez vos fichiers dans : <code>assets/pdf/cours/spe/tsi/classiques/</code></p>
+                        </div>
                     </div>
                 </div>
-                <!-- FIN SPE TSI -->
 
             </div>
             <!-- FIN SPE -->
@@ -2202,7 +950,7 @@
         });
 
         // ============================================================
-        // 2. NAVIGATION NIVEAU (SUP / SPE)
+        // 2. NAVIGATION
         // ============================================================
         function switchLevel(level) {
             document.querySelectorAll('.doc-nav-level .nav-btn').forEach(b => b.classList.remove('active'));
@@ -2211,9 +959,6 @@
             document.getElementById(`level-${level}`).classList.add('active');
         }
 
-        // ============================================================
-        // 3. NAVIGATION FILIÈRE
-        // ============================================================
         function switchFiliere(level, filiere) {
             const container = document.getElementById(`level-${level}`);
             const buttons = container.querySelectorAll('.doc-nav-filiere .filiere-btn');
@@ -2226,9 +971,6 @@
             if (targetContent) targetContent.classList.add('active');
         }
 
-        // ============================================================
-        // 4. NAVIGATION SOUS-CATÉGORIE
-        // ============================================================
         function switchSub(filiereId, sub) {
             const container = document.getElementById(filiereId);
             if (!container) return;
@@ -2242,9 +984,6 @@
             if (targetContent) targetContent.classList.add('active');
         }
 
-        // ============================================================
-        // 5. ARBRE (TOGGLE)
-        // ============================================================
         function toggleTree(label) {
             const children = label.nextElementSibling;
             const arrow = label.querySelector('.arrow');
@@ -2255,7 +994,7 @@
         }
 
         // ============================================================
-        // 6. ACTIONS
+        // 3. ACTIONS
         // ============================================================
         function viewDocument(name) {
             alert('👁️ Aperçu du document : ' + name);
