@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Grandes Écoles Maroc - CPGE Life</title>
+    <title>Grandes Écoles du MAROC - CPGE Life</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -11,12 +11,16 @@
     <!-- Police Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
+    <!-- Chart.js pour les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+    </script>
+
     <!-- Notre CSS -->
     <link rel="stylesheet" href="css/styles.css"/>
 
     <style>
         /* ============================================
-           STYLES SPÉCIFIQUES GRANDES ÉCOLES
+           STYLES SPÉCIFIQUES GRANDES ÉCOLES MAROC
            ============================================ */
         .ecoles-page {
             padding: 40px 0 60px;
@@ -137,144 +141,70 @@
             border-color: var(--color-secondary);
         }
 
-        /* Résultats */
-        .results-count {
-            text-align: center;
-            color: var(--color-gray-500);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
+        /* ===== ÉTIQUETTES DES ÉCOLES ===== */
+        .ecoles-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 30px;
         }
 
-        .results-count strong {
-            color: var(--color-gray-900);
-        }
-
-        [data-theme="dark"] .results-count strong {
-            color: var(--color-white);
-        }
-
-        /* Grille des écoles */
-        .ecoles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .ecole-card {
+        .ecole-tag {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 20px;
+            min-width: 100px;
             background: var(--color-white);
             border-radius: var(--radius-lg);
-            padding: 24px;
-            border: 1px solid var(--color-gray-200);
+            border: 2px solid var(--color-gray-200);
             box-shadow: var(--shadow-sm);
-            transition: var(--transition);
             cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
         }
 
-        [data-theme="dark"] .ecole-card {
+        [data-theme="dark"] .ecole-tag {
             background: var(--color-gray-800);
             border-color: var(--color-gray-700);
         }
 
-        .ecole-card:hover {
-            transform: translateY(-6px);
+        .ecole-tag:hover {
+            transform: translateY(-6px) scale(1.02);
             box-shadow: var(--shadow-lg);
             border-color: var(--color-secondary);
         }
 
-        .ecole-card .ecole-rank {
-            display: inline-block;
-            padding: 2px 12px;
-            border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            background: var(--color-secondary);
-            color: white;
-            margin-bottom: 8px;
+        .ecole-tag .ecole-icon {
+            font-size: 2.5rem;
+            margin-bottom: 4px;
         }
 
-        .ecole-card .ecole-name {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .ecole-tag .ecole-acronyme {
+            font-weight: 800;
+            font-size: 1rem;
             color: var(--color-gray-900);
         }
 
-        [data-theme="dark"] .ecole-card .ecole-name {
+        [data-theme="dark"] .ecole-tag .ecole-acronyme {
             color: var(--color-white);
         }
 
-        .ecole-card .ecole-acronyme {
-            font-size: 0.85rem;
-            color: var(--color-gray-500);
-            font-weight: 600;
-        }
-
-        .ecole-card .ecole-ville {
-            font-size: 0.9rem;
-            color: var(--color-gray-500);
-            margin: 4px 0 10px;
-        }
-
-        .ecole-card .ecole-filieres {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-
-        .ecole-card .ecole-filieres .filiere-tag {
-            padding: 2px 12px;
-            border-radius: 12px;
+        .ecole-tag .ecole-nom {
             font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: white;
-        }
-
-        .ecole-card .ecole-filieres .filiere-tag.mp { background: #4F46E5; }
-        .ecole-card .ecole-filieres .filiere-tag.psi { background: #06B6D4; }
-        .ecole-card .ecole-filieres .filiere-tag.tsi { background: #F59E0B; }
-
-        .ecole-card .ecole-places {
-            display: flex;
-            gap: 16px;
-            font-size: 0.8rem;
             color: var(--color-gray-500);
-            padding-top: 10px;
-            border-top: 1px solid var(--color-gray-200);
+            max-width: 100px;
+            line-height: 1.2;
         }
 
-        [data-theme="dark"] .ecole-card .ecole-places {
-            border-top-color: var(--color-gray-700);
+        .ecole-tag .ecole-places-tag {
+            font-size: 0.6rem;
+            color: var(--color-gray-400);
+            margin-top: 4px;
         }
 
-        .ecole-card .ecole-places span strong {
-            color: var(--color-gray-900);
-        }
-
-        [data-theme="dark"] .ecole-card .ecole-places span strong {
-            color: var(--color-white);
-        }
-
-        .ecole-card .btn-detail {
-            margin-top: 14px;
-            padding: 8px 20px;
-            border: none;
-            border-radius: var(--radius-sm);
-            background: var(--color-secondary);
-            color: white;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-        }
-
-        .ecole-card .btn-detail:hover {
-            background: var(--color-secondary-light);
-            transform: translateY(-2px);
-        }
-
-        /* Modal / Page détail */
+        /* ===== MODAL / PAGE DÉTAIL ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -282,10 +212,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             z-index: 9999;
             overflow-y: auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         .modal-overlay.active {
@@ -297,13 +227,11 @@
         .modal-content {
             background: var(--color-white);
             border-radius: var(--radius-lg);
-            max-width: 900px;
+            max-width: 1100px;
             width: 100%;
-            padding: 40px;
+            padding: 0;
             position: relative;
             margin: 20px auto;
-            max-height: 90vh;
-            overflow-y: auto;
         }
 
         [data-theme="dark"] .modal-content {
@@ -312,8 +240,9 @@
 
         .modal-content .modal-close {
             position: sticky;
-            top: 0;
+            top: 10px;
             float: right;
+            margin: 10px 10px 0 0;
             background: var(--color-gray-200);
             border: none;
             border-radius: 50%;
@@ -339,137 +268,223 @@
             color: white;
         }
 
-        .modal-content .modal-title {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--color-gray-900);
-            margin-bottom: 4px;
-        }
-
-        [data-theme="dark"] .modal-content .modal-title {
-            color: var(--color-white);
-        }
-
-        .modal-content .modal-subtitle {
-            font-size: 1rem;
-            color: var(--color-gray-500);
-            margin-bottom: 16px;
-        }
-
-        .modal-content .modal-section {
-            margin-bottom: 24px;
-        }
-
-        .modal-content .modal-section h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--color-gray-900);
-            margin-bottom: 8px;
+        /* En-tête de la page école */
+        .ecole-header {
+            padding: 30px 40px 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 24px;
+            border-bottom: 1px solid var(--color-gray-200);
+            flex-wrap: wrap;
         }
 
-        [data-theme="dark"] .modal-content .modal-section h3 {
+        [data-theme="dark"] .ecole-header {
+            border-bottom-color: var(--color-gray-700);
+        }
+
+        .ecole-header .ecole-logo {
+            font-size: 4rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-gray-100);
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+        }
+
+        [data-theme="dark"] .ecole-header .ecole-logo {
+            background: var(--color-gray-700);
+        }
+
+        .ecole-header .ecole-info h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-header .ecole-info h2 {
             color: var(--color-white);
         }
 
-        .modal-content .modal-section p {
-            color: var(--color-gray-600);
-            line-height: 1.7;
+        .ecole-header .ecole-info .ecole-acronyme-header {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            font-weight: 600;
         }
 
-        [data-theme="dark"] .modal-content .modal-section p {
+        .ecole-header .ecole-info .ecole-ville-header {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+        }
+
+        .ecole-header .ecole-places-header {
+            margin-left: auto;
+            text-align: center;
+            padding: 10px 20px;
+            background: var(--color-gray-100);
+            border-radius: var(--radius-md);
+        }
+
+        [data-theme="dark"] .ecole-header .ecole-places-header {
+            background: var(--color-gray-700);
+        }
+
+        .ecole-header .ecole-places-header .places-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+        }
+
+        .ecole-header .ecole-places-header .places-label {
+            font-size: 0.7rem;
+            color: var(--color-gray-500);
+        }
+
+        /* Onglets */
+        .ecole-tabs {
+            display: flex;
+            gap: 4px;
+            padding: 0 40px;
+            border-bottom: 1px solid var(--color-gray-200);
+            flex-wrap: wrap;
+        }
+
+        [data-theme="dark"] .ecole-tabs {
+            border-bottom-color: var(--color-gray-700);
+        }
+
+        .ecole-tabs .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .ecole-tabs .tab-btn:hover {
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-tabs .tab-btn:hover {
+            color: var(--color-white);
+        }
+
+        .ecole-tabs .tab-btn.active {
+            color: var(--color-secondary);
+            border-bottom-color: var(--color-secondary);
+        }
+
+        /* Contenu des onglets */
+        .tab-content {
+            display: none;
+            padding: 30px 40px 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 12px;
+        }
+
+        [data-theme="dark"] .tab-content h3 {
+            color: var(--color-white);
+        }
+
+        .tab-content p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+        }
+
+        [data-theme="dark"] .tab-content p {
             color: var(--color-gray-400);
         }
 
-        .modal-content .places-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 8px;
+        /* Min & Max - Graphique */
+        .minmax-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
 
-        .modal-content .places-table th,
-        .modal-content .places-table td {
+        .minmax-container .chart-wrapper {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        [data-theme="dark"] .minmax-container .chart-wrapper {
+            background: var(--color-gray-700);
+        }
+
+        .minmax-container .chart-wrapper canvas {
+            max-height: 300px;
+            max-width: 100%;
+        }
+
+        /* Tableau MIN/MAX */
+        .minmax-table-wrapper {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .minmax-table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .minmax-table-wrapper th,
+        .minmax-table-wrapper td {
             padding: 10px 14px;
             border: 1px solid var(--color-gray-200);
             text-align: center;
         }
 
-        [data-theme="dark"] .modal-content .places-table th,
-        [data-theme="dark"] .modal-content .places-table td {
+        [data-theme="dark"] .minmax-table-wrapper th,
+        [data-theme="dark"] .minmax-table-wrapper td {
             border-color: var(--color-gray-700);
         }
 
-        .modal-content .places-table th {
+        .minmax-table-wrapper th {
             background: var(--color-gray-100);
             font-weight: 700;
             color: var(--color-gray-700);
         }
 
-        [data-theme="dark"] .modal-content .places-table th {
+        [data-theme="dark"] .minmax-table-wrapper th {
             background: var(--color-gray-700);
             color: var(--color-gray-300);
         }
 
-        .modal-content .places-table td {
+        .minmax-table-wrapper td {
             color: var(--color-gray-600);
         }
 
-        [data-theme="dark"] .modal-content .places-table td {
+        [data-theme="dark"] .minmax-table-wrapper td {
             color: var(--color-gray-400);
         }
 
-        .modal-content .places-table .highlight {
-            color: var(--color-secondary);
-            font-weight: 700;
-        }
-
-        /* Min/Max tableau */
-        .minmax-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 8px;
-        }
-
-        .minmax-table th,
-        .minmax-table td {
-            padding: 8px 12px;
-            border: 1px solid var(--color-gray-200);
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        [data-theme="dark"] .minmax-table th,
-        [data-theme="dark"] .minmax-table td {
-            border-color: var(--color-gray-700);
-        }
-
-        .minmax-table th {
-            background: var(--color-gray-100);
-            font-weight: 700;
-            color: var(--color-gray-700);
-        }
-
-        [data-theme="dark"] .minmax-table th {
-            background: var(--color-gray-700);
-            color: var(--color-gray-300);
-        }
-
-        .minmax-table td {
-            color: var(--color-gray-600);
-        }
-
-        [data-theme="dark"] .minmax-table td {
+        .minmax-table-wrapper td .no-data {
             color: var(--color-gray-400);
         }
 
         /* Recommandation */
         .recommandation {
-            margin-top: 12px;
-            padding: 16px 20px;
-            border-radius: var(--radius-md);
+            margin-top: 20px;
+            padding: 20px;
             background: var(--color-gray-50);
+            border-radius: var(--radius-md);
             border: 1px solid var(--color-gray-200);
         }
 
@@ -494,7 +509,7 @@
             color: var(--color-gray-300);
         }
 
-        .recommandation .range-input input {
+        .recommandation .range-input input[type="number"] {
             padding: 8px 14px;
             border: 1px solid var(--color-gray-300);
             border-radius: var(--radius-sm);
@@ -504,10 +519,16 @@
             color: var(--color-gray-900);
         }
 
-        [data-theme="dark"] .recommandation .range-input input {
+        [data-theme="dark"] .recommandation .range-input input[type="number"] {
             background: var(--color-gray-800);
             border-color: var(--color-gray-600);
             color: var(--color-white);
+        }
+
+        .recommandation .range-input input[type="range"] {
+            flex: 1;
+            min-width: 150px;
+            accent-color: var(--color-secondary);
         }
 
         .recommandation .range-input input:focus {
@@ -532,7 +553,7 @@
 
         .recommandation .result {
             margin-top: 12px;
-            padding: 12px 16px;
+            padding: 16px 20px;
             border-radius: var(--radius-sm);
             font-weight: 700;
             display: none;
@@ -558,69 +579,305 @@
 
         .recommandation .result .chance-bar {
             width: 100%;
-            height: 8px;
-            border-radius: 4px;
+            height: 10px;
+            border-radius: 5px;
             background: var(--color-gray-200);
-            margin-top: 8px;
+            margin-top: 10px;
             overflow: hidden;
         }
 
         .recommandation .result .chance-bar .fill {
             height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
+            border-radius: 5px;
+            transition: width 0.6s ease;
         }
 
         .recommandation .result .chance-bar .fill.faible { background: #EF4444; }
         .recommandation .result .chance-bar .fill.moyenne { background: #F59E0B; }
         .recommandation .result .chance-bar .fill.forte { background: #10B981; }
 
-        /* Liens utiles */
-        .liens-utiles {
+        .recommandation .result .range-indicator {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 8px;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--color-gray-400);
+            margin-top: 4px;
         }
 
-        .liens-utiles a {
-            padding: 8px 20px;
-            border: 1px solid var(--color-secondary);
-            border-radius: var(--radius-sm);
-            color: var(--color-secondary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-decoration: none;
+        /* Filières */
+        .filiere-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .filiere-item {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid var(--color-gray-200);
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .liens-utiles a:hover {
-            background: var(--color-secondary);
-            color: white;
+        [data-theme="dark"] .filiere-item {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
         }
 
-        /* Responsive */
+        .filiere-item:hover {
+            border-color: var(--color-secondary);
+        }
+
+        .filiere-item.active {
+            border-color: var(--color-secondary);
+            background: rgba(79, 70, 229, 0.08);
+        }
+
+        .filiere-item .filiere-name {
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .filiere-item .filiere-name {
+            color: var(--color-white);
+        }
+
+        .filiere-item .filiere-desc {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+        }
+
+        .filiere-detail {
+            margin-top: 16px;
+            padding: 16px 20px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            display: none;
+        }
+
+        [data-theme="dark"] .filiere-detail {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .filiere-detail.active {
+            display: block;
+        }
+
+        .filiere-detail .programme-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .filiere-detail .programme-list li {
+            padding: 4px 0;
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .filiere-detail .programme-list li {
+            color: var(--color-gray-400);
+        }
+
+        .filiere-detail .btn-download-programme {
+            margin-top: 12px;
+            padding: 8px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filiere-detail .btn-download-programme:hover {
+            background: var(--color-secondary-light);
+        }
+
+        /* Vie étudiante */
+        .vie-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .vie-card {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .vie-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .vie-card .vie-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .vie-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .vie-card h4 {
+            color: var(--color-white);
+        }
+
+        .vie-card p {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+        }
+
+        /* ===== Aucun résultat ===== */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--color-gray-500);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* ===== Responsive ===== */
         @media (max-width: 992px) {
-            .ecoles-grid { grid-template-columns: repeat(2, 1fr); }
+            .minmax-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filiere-list {
+                grid-template-columns: 1fr;
+            }
+
+            .vie-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ecole-header {
+                padding: 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ecole-header .ecole-places-header {
+                margin-left: 0;
+            }
+
+            .ecole-tabs {
+                padding: 0 16px;
+                justify-content: center;
+            }
+
+            .ecole-tabs .tab-btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
         }
 
         @media (max-width: 768px) {
-            .ecoles-grid { grid-template-columns: 1fr; }
-            .ecoles-page .page-title { font-size: 1.8rem; }
-            .ecoles-search { flex-direction: column; }
-            .ecoles-search .search-input { width: 100%; }
-            .modal-content { padding: 24px; margin: 10px; }
-            .modal-content .modal-title { font-size: 1.5rem; }
+            .ecoles-page .page-title {
+                font-size: 1.8rem;
+            }
+
+            .ecoles-search {
+                flex-direction: column;
+            }
+
+            .ecoles-search .search-input {
+                width: 100%;
+            }
+
+            .ecole-tag {
+                min-width: 80px;
+                padding: 12px 16px;
+            }
+
+            .ecole-tag .ecole-icon {
+                font-size: 2rem;
+            }
+
+            .ecole-tag .ecole-acronyme {
+                font-size: 0.85rem;
+            }
+
+            .modal-content {
+                margin: 10px;
+            }
+
+            .ecole-header .ecole-logo {
+                font-size: 3rem;
+                width: 60px;
+                height: 60px;
+            }
+
+            .ecole-header .ecole-info h2 {
+                font-size: 1.4rem;
+            }
+
+            .recommandation .range-input {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .recommandation .range-input input[type="range"] {
+                width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
-            .ecoles-page .page-title { font-size: 1.4rem; }
-            .modal-content { padding: 16px; }
-            .modal-content .modal-title { font-size: 1.2rem; }
-            .modal-content .places-table th,
-            .modal-content .places-table td,
-            .minmax-table th,
-            .minmax-table td { font-size: 0.7rem; padding: 4px 8px; }
+            .ecoles-page .page-title {
+                font-size: 1.4rem;
+            }
+
+            .ecole-tag {
+                min-width: 70px;
+                padding: 10px 12px;
+            }
+
+            .ecole-tag .ecole-icon {
+                font-size: 1.6rem;
+            }
+
+            .ecole-tag .ecole-acronyme {
+                font-size: 0.75rem;
+            }
+
+            .ecole-tag .ecole-nom {
+                font-size: 0.6rem;
+            }
+
+            .ecole-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+            }
+
+            .tab-content {
+                padding: 12px;
+            }
+
+            .minmax-table-wrapper table {
+                font-size: 0.7rem;
+            }
+
+            .minmax-table-wrapper th,
+            .minmax-table-wrapper td {
+                padding: 4px 6px;
+            }
         }
     </style>
 </head>
@@ -703,12 +960,12 @@
     <section class="ecoles-page">
         <div class="container">
 
-            <h1 class="page-title">🏫 Grandes Écoles d'Ingénieurs - Maroc</h1>
-            <p class="page-subtitle">Découvrez toutes les écoles accessibles après les CPGE</p>
+            <h1 class="page-title">🏫 Grandes Écoles du MAROC</h1>
+            <p class="page-subtitle">Découvrez toutes les écoles d'ingénieurs accessibles après les CPGE</p>
 
             <!-- Recherche et filtres -->
             <div class="ecoles-search">
-                <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une école, une filière..." oninput="filterEcoles()"/>
+                <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une école..." oninput="filterEcoles()"/>
                 <button class="search-btn" onclick="filterEcoles()">
                     <i class="fas fa-search"></i> Rechercher
                 </button>
@@ -721,21 +978,22 @@
                 </select>
             </div>
 
-            <!-- Résultats -->
-            <div class="results-count">
-                Affichage de <strong id="countDisplay">0</strong> école(s)
+            <!-- Étiquettes des écoles -->
+            <div class="ecoles-tags" id="ecolesTags">
+                <!-- Généré par JavaScript -->
             </div>
 
-            <!-- Grille -->
-            <div class="ecoles-grid" id="ecolesGrid">
-                <!-- Généré par JavaScript -->
+            <!-- Aucun résultat -->
+            <div class="no-results" id="noResults" style="display:none;">
+                <i class="fas fa-search"></i>
+                <p>Aucune école ne correspond à votre recherche.</p>
             </div>
 
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- MODAL (Détail de l'école) -->
+    <!-- MODAL (Page détaillée de l'école) -->
     <!-- ============================================================ -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
@@ -824,17 +1082,54 @@
                 nom: 'École Mohammadia des Ingénieurs',
                 ville: 'Rabat',
                 description: "L'EMI est la plus ancienne et l'une des plus prestigieuses écoles d'ingénieurs du Maroc. Fondée en 1959, elle forme des ingénieurs généralistes de haut niveau dans de nombreux domaines.",
+                icone: '🏗️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 406, PSI: 72, TSI: 70 },
                 total: 548,
                 minmax: {
-                    MP: { min: 3, max: 1742 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 3, max: 1742 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
-                debouches: ['Ingénieur Généraliste', 'Chef de Projet', 'Directeur Technique', 'Consultant'],
+                filieresDetails: [
+                    { nom: 'Génie Civil', description: 'Conception et réalisation d\'ouvrages' },
+                    { nom: 'Génie Mécanique', description: 'Conception et fabrication mécanique' },
+                    { nom: 'Génie Électrique', description: 'Énergie et automatismes' },
+                    { nom: 'Informatique', description: 'Systèmes et réseaux' }
+                ],
+                debouches: ['Ingénieur Généraliste', 'Chef de Projet', 'Directeur Technique'],
                 site: 'https://www.emi.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus moderne à Rabat avec laboratoires de pointe',
+                    associations: ['Club Robotique', 'Junior EMI', 'Sport EMI'],
+                    evenements: ['Journée Portes Ouvertes', 'Conférences EMI'],
+                    logement: 'Résidences universitaires à proximité'
+                }
             },
             {
                 id: 'ensias',
@@ -842,45 +1137,109 @@
                 nom: "École Nationale Supérieure d'Informatique et d'Analyse des Systèmes",
                 ville: 'Rabat',
                 description: "Fondée en 1992, l'ENSIAS est l'une des écoles d'ingénieurs les plus prestigieuses du Maroc dans les domaines de l'informatique, de l'intelligence artificielle, de la cybersécurité et de la data science.",
+                icone: '💻',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 200, PSI: 37, TSI: 44 },
                 total: 281,
                 minmax: {
-                    MP: { min: 5, max: 1220 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 5, max: 1220 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
                 filieresDetails: [
-                    { nom: 'Systèmes intelligents', min: 25, max: 1220 },
-                    { nom: 'Business Intelligence & Analytics', min: 228, max: 723 },
-                    { nom: 'Data and Software Sciences', min: 248, max: 1035 },
-                    { nom: 'Génie Logiciel', min: 160, max: 860 },
-                    { nom: 'Intelligence Artificielle', min: 111, max: 706 },
-                    { nom: 'Cyber Security & Cloud', min: 0, max: 0 },
-                    { nom: 'Smart Supply Chain and Logistics', min: 653, max: 1134 },
-                    { nom: 'Ingénierie Digitale pour la Finance', min: 257, max: 1049 }
+                    { nom: 'Génie Logiciel', description: 'Développement logiciel avancé' },
+                    { nom: 'Data Science', description: 'Big Data et Intelligence Artificielle' },
+                    { nom: 'Cybersécurité', description: 'Sécurité des systèmes et réseaux' },
+                    { nom: 'Cloud Computing', description: 'Infrastructures et services cloud' }
                 ],
-                debouches: ['Software Engineer', 'Data Scientist', 'Cyber Security Analyst', 'AI Engineer', 'DevOps Engineer'],
+                debouches: ['Software Engineer', 'Data Scientist', 'Cyber Security Analyst', 'AI Engineer'],
                 site: 'https://www.ensias.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus moderne à Rabat avec laboratoires de pointe',
+                    associations: ['Club IA', 'ENSIAS Gaming', 'Junior ENSIAS'],
+                    evenements: ['Hackathon ENSIAS', 'Conférences Tech'],
+                    logement: 'Résidences universitaires à proximité'
+                }
             },
             {
                 id: 'inpt',
                 acronyme: 'INPT',
                 nom: "Institut National des Postes et Télécommunications",
                 ville: 'Rabat',
-                description: "L'INPT est un établissement public de référence dans les domaines des télécommunications, des technologies de l'information et des réseaux.",
+                description: "Créé en 1961, l'INPT est l'une des principales écoles d'ingénieurs marocaines dans les domaines des télécommunications, des réseaux, de l'informatique, de la cybersécurité et du cloud computing.",
+                icone: '📡',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 123, PSI: 68, TSI: 55 },
                 total: 246,
                 minmax: {
-                    MP: { min: 8, max: 1080 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 8, max: 1080 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
-                debouches: ['Ingénieur Télécoms', 'Architecte Réseaux', 'Chef de Projet IT', 'Consultant'],
+                filieresDetails: [
+                    { nom: 'Data Science', description: 'Big Data et IA' },
+                    { nom: 'Cybersécurité', description: 'Sécurité numérique' },
+                    { nom: 'Réseaux', description: 'Infrastructures et télécoms' },
+                    { nom: 'Cloud Computing', description: 'Services cloud' }
+                ],
+                debouches: ['Ingénieur Télécoms', 'Architecte Réseaux', 'Cyber Security Engineer'],
                 site: 'https://www.inpt.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus moderne à Rabat',
+                    associations: ['Club Télécoms', 'INPT Gaming'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'ensmr',
@@ -888,17 +1247,52 @@
                 nom: "École Nationale Supérieure des Mines de Rabat",
                 ville: 'Rabat',
                 description: "L'ENSMR (ex-ENIM) est une grande école d'ingénieurs spécialisée dans les mines, la géologie et l'industrie minérale.",
+                icone: '⛏️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 175, PSI: 75, TSI: 50 },
                 total: 300,
                 minmax: {
-                    MP: { min: 9, max: 1742 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 9, max: 1742 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
-                debouches: ['Ingénieur des Mines', 'Géologue', 'Responsable Industriel', 'Consultant'],
+                filieresDetails: [
+                    { nom: 'Génie Minier', description: 'Exploitation minière' },
+                    { nom: 'Géologie', description: 'Géologie appliquée' }
+                ],
+                debouches: ['Ingénieur des Mines', 'Géologue', 'Responsable Industriel'],
                 site: 'https://www.enim.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Rabat',
+                    associations: ['Club Mines', 'Géologie Club'],
+                    evenements: ['Conférences Mines'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'ehtp',
@@ -906,17 +1300,53 @@
                 nom: "École Hassania des Travaux Publics",
                 ville: 'Casablanca',
                 description: "L'EHTP est la principale école d'ingénieurs marocaine dans les domaines du génie civil, des transports, de l'hydraulique et de l'aménagement.",
+                icone: '🏗️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 254, PSI: 33, TSI: 13 },
                 total: 300,
                 minmax: {
-                    MP: { min: 19, max: 2105 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 19, max: 2105 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Génie Civil', description: 'Construction et infrastructures' },
+                    { nom: 'Hydraulique', description: 'Eau et environnement' },
+                    { nom: 'Transport', description: 'Infrastructures de transport' }
+                ],
                 debouches: ['Ingénieur Civil', 'Chef de Projet BTP', 'Urbaniste', 'Hydraulicien'],
                 site: 'https://www.ehtp.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus moderne à Casablanca',
+                    associations: ['Club BTP', 'Junior EHTP'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'insea',
@@ -924,17 +1354,53 @@
                 nom: "Institut National de Statistique et d'Économie Appliquée",
                 ville: 'Rabat',
                 description: "L'INSEA est la référence au Maroc pour la formation en statistique, data science, économétrie et actuariat.",
+                icone: '📊',
                 filieres: ['MP', 'PSI'],
                 places: { MP: 172, PSI: 44, TSI: null },
                 total: 216,
                 minmax: {
-                    MP: { min: 32, max: 1965 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 32, max: 1965 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Statistique', description: 'Méthodes statistiques avancées' },
+                    { nom: 'Data Science', description: 'Big Data et analyse' },
+                    { nom: 'Actuariat', description: 'Risques et assurances' }
+                ],
                 debouches: ['Statisticien', 'Data Scientist', 'Actuaire', 'Économètre'],
                 site: 'https://www.insea.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Rabat',
+                    associations: ['Club Stat', 'INSEA Gaming'],
+                    evenements: ['Conférences Statistiques'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'aiac',
@@ -942,17 +1408,52 @@
                 nom: "Académie Internationale Mohammed-VI de l'Aviation Civile",
                 ville: 'Casablanca',
                 description: "L'AIAC forme les ingénieurs dans les métiers de l'aviation civile, de la sécurité aérienne et de l'aéronautique.",
+                icone: '✈️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 78, PSI: 30, TSI: 30 },
                 total: 138,
                 minmax: {
-                    MP: { min: 75, max: 1950 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 75, max: 1950 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
-                debouches: ['Ingénieur Aéronautique', 'Responsable Sécurité Aérienne', 'Contrôleur Aérien'],
+                filieresDetails: [
+                    { nom: 'Aéronautique', description: 'Ingénierie aéronautique' },
+                    { nom: 'Sécurité Aérienne', description: 'Gestion de la sécurité' }
+                ],
+                debouches: ['Ingénieur Aéronautique', 'Responsable Sécurité Aérienne'],
                 site: '#',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Casablanca',
+                    associations: ['Club Aviation'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'ensem',
@@ -960,17 +1461,53 @@
                 nom: "École Nationale Supérieure d'Électricité et de Mécanique",
                 ville: 'Casablanca',
                 description: "L'ENSEM est une école d'ingénieurs de référence dans les domaines de l'électrotechnique, de la mécanique et de l'énergétique.",
+                icone: '⚡',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 105, PSI: 88, TSI: 65 },
                 total: 258,
                 minmax: {
-                    MP: { min: 195, max: 2260 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 195, max: 2260 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Électrotechnique', description: 'Énergie et automatismes' },
+                    { nom: 'Mécanique', description: 'Conception mécanique' },
+                    { nom: 'Énergétique', description: 'Énergie et environnement' }
+                ],
                 debouches: ['Ingénieur Électrotechnicien', 'Mécanicien', 'Spécialiste Énergétique'],
                 site: 'https://www.ensem.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Casablanca',
+                    associations: ['Club Énergie', 'Junior ENSEM'],
+                    evenements: ['Conférences Énergie'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'esi',
@@ -978,17 +1515,52 @@
                 nom: "École des Sciences de l'Information",
                 ville: 'Rabat',
                 description: "L'ESI est une école spécialisée dans les sciences de l'information, la documentation, les bibliothèques et les archives.",
+                icone: '📚',
                 filieres: ['MP', 'PSI'],
                 places: { MP: 100, PSI: 22, TSI: null },
                 total: 122,
                 minmax: {
-                    MP: { min: 211, max: 2339 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: 211, max: 2339 }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Archivage', description: 'Gestion des archives' },
+                    { nom: 'Documentation', description: 'Gestion documentaire' }
+                ],
                 debouches: ['Archiviste', 'Documentaliste', 'Chef de Projet Information'],
                 site: 'https://www.esi.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Rabat',
+                    associations: ['Club Bibliothèque'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'ensam',
@@ -996,17 +1568,52 @@
                 nom: "Arts & Métiers (Réseau National)",
                 ville: 'Meknès / Casablanca / Rabat',
                 description: "L'ENSAM (Arts et Métiers) est une école d'ingénieurs pluridisciplinaire formant des ingénieurs généralistes avec une forte culture industrielle.",
+                icone: '🔧',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 32, PSI: 32, TSI: 32 },
                 total: 96,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
-                debouches: ['Ingénieur Généraliste', 'Responsable Industriel', 'Chef de Projet'],
+                filieresDetails: [
+                    { nom: 'Industrie', description: 'Production et gestion industrielle' },
+                    { nom: 'Mécanique', description: 'Conception et fabrication' }
+                ],
+                debouches: ['Ingénieur Généraliste', 'Responsable Industriel'],
                 site: 'https://www.ensam.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus dans plusieurs villes',
+                    associations: ['Club Industrie', 'Junior ENSAM'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'esith',
@@ -1014,17 +1621,52 @@
                 nom: "École Supérieure des Industries du Textile et de l'Habillement",
                 ville: 'Casablanca',
                 description: "L'ESITH est une école spécialisée dans les industries du textile, de l'habillement et du cuir, formant des ingénieurs et des managers.",
+                icone: '🧵',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 114, PSI: 66, TSI: 71 },
                 total: 251,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Textile', description: 'Ingénierie textile' },
+                    { nom: 'Habillement', description: 'Conception et production' }
+                ],
                 debouches: ['Ingénieur Textile', 'Responsable Qualité', 'Chef de Production'],
                 site: 'https://www.esith.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Casablanca',
+                    associations: ['Club Textile'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'ecc',
@@ -1032,17 +1674,51 @@
                 nom: "École Centrale Casablanca",
                 ville: 'Casablanca (Bouskoura)',
                 description: "L'École Centrale Casablanca est le premier campus africain du réseau des Écoles Centrales, formant des ingénieurs généralistes de haut niveau.",
+                icone: '🏛️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 90, PSI: 25, TSI: 5 },
                 total: 120,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Généraliste', description: 'Formation généraliste' }
+                ],
                 debouches: ['Ingénieur Généraliste', 'Consultant', 'Chef de Projet'],
                 site: 'https://www.centrale-casablanca.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Bouskoura',
+                    associations: ['Club Centrale', 'Junior Centrale'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'iav',
@@ -1050,17 +1726,52 @@
                 nom: "Agro-Vétérinaire Hassan-II",
                 ville: 'Rabat',
                 description: "L'IAV Hassan-II est une école de référence dans les domaines de l'agronomie, des sciences vétérinaires et du développement rural.",
+                icone: '🌱',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 23, PSI: 10, TSI: 10 },
                 total: 43,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Agronomie', description: 'Sciences agricoles' },
+                    { nom: 'Vétérinaire', description: 'Médecine vétérinaire' }
+                ],
                 debouches: ['Ingénieur Agronome', 'Vétérinaire', 'Chercheur'],
                 site: 'https://www.iav.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Rabat',
+                    associations: ['Club Agronomie', 'Vétérinaire Club'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'eia',
@@ -1068,17 +1779,52 @@
                 nom: "École d'Ingénieurs Abulcasis (UIASS)",
                 ville: 'Rabat',
                 description: "L'EIA Abulcasis est une école privée d'ingénieurs proposant des formations en génie des procédés industriels et pharmaceutiques, et en génie informatique.",
+                icone: '💊',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 19, PSI: 5, TSI: 6 },
                 total: 30,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Génie des Procédés', description: 'Industrie pharmaceutique' },
+                    { nom: 'Génie Informatique', description: 'Systèmes et logiciels' }
+                ],
                 debouches: ['Ingénieur Pharmaceutique', 'Ingénieur Informatique'],
                 site: 'https://www.eia.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Rabat',
+                    associations: ['Club Santé', 'Club Informatique'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'isem',
@@ -1086,17 +1832,52 @@
                 nom: "Institut Supérieur d'Études Maritimes",
                 ville: 'Casablanca',
                 description: "L'ISEM est un institut spécialisé dans la formation aux métiers maritimes, de la pêche, du transport maritime et de la logistique.",
+                icone: '⛴️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 30, PSI: 30, TSI: 20 },
                 total: 80,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Transport Maritime', description: 'Logistique maritime' },
+                    { nom: 'Pêche', description: 'Gestion des ressources halieutiques' }
+                ],
                 debouches: ['Ingénieur Maritime', 'Logisticien', 'Officier de Marine'],
                 site: '#',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Casablanca',
+                    associations: ['Club Maritime'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'cipl',
@@ -1104,17 +1885,51 @@
                 nom: "Centre d'Instruction des Pilotes de Ligne",
                 ville: 'Benslimane / Casablanca',
                 description: "Le CIPL est le centre de formation des pilotes de ligne de la RAM, formant des élèves pilotes dans le cadre de la formation ATPL.",
+                icone: '🛩️',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 32, PSI: 32, TSI: 32 },
                 total: 96,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Pilotage', description: 'Formation ATPL' }
+                ],
                 debouches: ['Pilote de Ligne', 'Commandant de Bord'],
                 site: '#',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Benslimane',
+                    associations: ['Club Aviation'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences'
+                }
             },
             {
                 id: 'iscae',
@@ -1122,17 +1937,53 @@
                 nom: "Institut Supérieur de Commerce et d'Administration des Entreprises",
                 ville: 'Casablanca / Rabat',
                 description: "L'ISCAE est la grande école de commerce marocaine, formant des managers et des cadres supérieurs dans les domaines de la finance, du marketing et du management.",
+                icone: '📈',
                 filieres: ['MP'],
                 places: { MP: 11, PSI: null, TSI: null },
                 total: 11,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Finance', description: 'Finance d\'entreprise et de marché' },
+                    { nom: 'Marketing', description: 'Stratégie marketing' },
+                    { nom: 'Management', description: 'Gestion des organisations' }
+                ],
                 debouches: ['Manager', 'Consultant', 'Directeur Financier', 'Responsable Marketing'],
                 site: 'https://www.iscae.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Casablanca et Rabat',
+                    associations: ['Club Finance', 'Junior ISCAE'],
+                    evenements: ['Conférences Business'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'ensa',
@@ -1140,17 +1991,51 @@
                 nom: "École Nationale des Sciences Appliquées",
                 ville: 'Réseau National',
                 description: "Les ENSA forment des ingénieurs généralistes dans plusieurs villes du Maroc (Agadir, Fès, Marrakech, Tanger, Oujda, Kénitra).",
+                icone: '🏫',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: null, PSI: null, TSI: null },
                 total: null,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Généraliste', description: 'Formation généraliste' }
+                ],
                 debouches: ['Ingénieur Généraliste', 'Cadre Technique'],
                 site: '#',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus dans plusieurs villes',
+                    associations: ['Club ENSA'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'enset',
@@ -1158,17 +2043,51 @@
                 nom: "École Normale Supérieure d'Enseignement Technique",
                 ville: 'Mohammedia / Rabat',
                 description: "L'ENSET forme des enseignants et des formateurs dans les domaines des sciences et techniques, ainsi que des ingénieurs pédagogues.",
+                icone: '👨‍🏫',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: null, PSI: null, TSI: null },
                 total: null,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Enseignement Technique', description: 'Formation des enseignants' }
+                ],
                 debouches: ['Enseignant-Chercheur', 'Formateur', 'Responsable Pédagogique'],
                 site: 'https://www.enset.ac.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Mohammedia et Rabat',
+                    associations: ['Club Pédagogie'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'fst',
@@ -1176,17 +2095,51 @@
                 nom: "Faculté des Sciences et Techniques",
                 ville: 'Réseau National',
                 description: "Les FST proposent des formations en sciences et techniques, avec des filières d'ingénierie et de recherche dans plusieurs villes du Maroc.",
+                icone: '🔬',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: 133, PSI: 85, TSI: 43 },
                 total: 261,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Sciences et Techniques', description: 'Formation généraliste' }
+                ],
                 debouches: ['Ingénieur', 'Chercheur', 'Enseignant-Chercheur'],
                 site: '#',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus dans plusieurs villes',
+                    associations: ['Club Science'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             },
             {
                 id: 'arts-metiers',
@@ -1194,75 +2147,84 @@
                 nom: "Arts et Métiers Sciences & Technologies",
                 ville: 'Rabat (Salé)',
                 description: "Le campus Arts et Métiers de Rabat est une école d'ingénieurs généraliste du réseau Arts et Métiers, formant des ingénieurs à forte culture industrielle.",
+                icone: '🔧',
                 filieres: ['MP', 'PSI', 'TSI'],
                 places: { MP: null, PSI: null, TSI: null },
                 total: null,
                 minmax: {
-                    MP: { min: 0, max: 0 },
-                    PSI: { min: 0, max: 0 },
-                    TSI: { min: 0, max: 0 }
+                    MP: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    PSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    },
+                    TSI: {
+                        annees: [
+                            { annee: 2022, min: null, max: null },
+                            { annee: 2023, min: null, max: null },
+                            { annee: 2024, min: null, max: null },
+                            { annee: 2025, min: null, max: null },
+                            { annee: 2026, min: null, max: null }
+                        ]
+                    }
                 },
+                filieresDetails: [
+                    { nom: 'Généraliste', description: 'Formation généraliste' }
+                ],
                 debouches: ['Ingénieur Généraliste', 'Responsable Industriel', 'Chef de Projet'],
                 site: 'https://www.artsetmetiers.ma',
-                brochure: '#'
+                brochure: '#',
+                vie: {
+                    campus: 'Campus à Salé',
+                    associations: ['Club Industrie', 'Junior Arts'],
+                    evenements: ['Journée Portes Ouvertes'],
+                    logement: 'Résidences universitaires'
+                }
             }
         ];
 
         // ============================================================
-        // 3. RENDU DES ÉCOLES
+        // 3. RENDU DES ÉTIQUETTES
         // ============================================================
         let currentEcoles = [...ECOLES_DATA];
 
         function renderEcoles() {
-            const grid = document.getElementById('ecolesGrid');
-            const countDisplay = document.getElementById('countDisplay');
+            const container = document.getElementById('ecolesTags');
+            const noResults = document.getElementById('noResults');
 
             if (currentEcoles.length === 0) {
-                grid.innerHTML = `
-                    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--color-gray-500);">
-                        <i class="fas fa-search" style="font-size:3rem;display:block;margin-bottom:16px;opacity:0.5;"></i>
-                        <p>Aucune école ne correspond à votre recherche.</p>
-                    </div>
-                `;
-                countDisplay.textContent = '0';
+                container.innerHTML = '';
+                noResults.style.display = 'block';
                 return;
             }
 
-            countDisplay.textContent = currentEcoles.length;
+            noResults.style.display = 'none';
 
             let html = '';
-            currentEcoles.forEach((ecole, index) => {
-                const rank = index + 1;
-
-                // Filières
-                let filieresHtml = '';
-                ecole.filieres.forEach(f => {
-                    const cls = f.toLowerCase();
-                    filieresHtml += `<span class="filiere-tag ${cls}">${f}</span>`;
-                });
-
-                // Places
-                let placesHtml = '';
-                if (ecole.places.MP) placesHtml += `<span><strong>MP:</strong> ${ecole.places.MP}</span>`;
-                if (ecole.places.PSI) placesHtml += `<span><strong>PSI:</strong> ${ecole.places.PSI}</span>`;
-                if (ecole.places.TSI) placesHtml += `<span><strong>TSI:</strong> ${ecole.places.TSI}</span>`;
-
+            currentEcoles.forEach(ecole => {
                 html += `
-                    <div class="ecole-card" onclick="openDetail('${ecole.id}')">
-                        <div class="ecole-rank">#${rank}</div>
-                        <div class="ecole-name">${ecole.nom}</div>
+                    <div class="ecole-tag" onclick="openDetail('${ecole.id}')">
+                        <div class="ecole-icon">${ecole.icone || '🏛️'}</div>
                         <div class="ecole-acronyme">${ecole.acronyme}</div>
-                        <div class="ecole-ville"><i class="fas fa-map-marker-alt"></i> ${ecole.ville}</div>
-                        <div class="ecole-filieres">${filieresHtml}</div>
-                        <div class="ecole-places">${placesHtml}</div>
-                        <button class="btn-detail" onclick="event.stopPropagation();openDetail('${ecole.id}')">
-                            <i class="fas fa-arrow-right"></i> Voir les détails
-                        </button>
+                        <div class="ecole-nom">${ecole.nom}</div>
+                        ${ecole.total ? `<div class="ecole-places-tag">${ecole.total} places</div>` : ''}
                     </div>
                 `;
             });
 
-            grid.innerHTML = html;
+            container.innerHTML = html;
         }
 
         // ============================================================
@@ -1273,17 +2235,14 @@
             const filiere = document.getElementById('filiereFilter').value;
 
             currentEcoles = ECOLES_DATA.filter(ecole => {
-                // Recherche
                 let matchSearch = true;
                 if (search) {
                     matchSearch = ecole.nom.toLowerCase().includes(search) ||
                                   ecole.acronyme.toLowerCase().includes(search) ||
                                   ecole.ville.toLowerCase().includes(search) ||
-                                  ecole.filieres.some(f => f.toLowerCase().includes(search)) ||
-                                  (ecole.description && ecole.description.toLowerCase().includes(search));
+                                  ecole.filieres.some(f => f.toLowerCase().includes(search));
                 }
 
-                // Filtre filière
                 let matchFiliere = true;
                 if (filiere !== 'all') {
                     matchFiliere = ecole.filieres.includes(filiere) &&
@@ -1298,119 +2257,177 @@
         }
 
         // ============================================================
-        // 5. OUVERTURE DU MODAL (Détail école)
+        // 5. OUVERTURE DU MODAL (Page détaillée)
         // ============================================================
+        let currentEcoleId = null;
+        let chartInstance = null;
+
         function openDetail(id) {
             const ecole = ECOLES_DATA.find(e => e.id === id);
             if (!ecole) return;
 
+            currentEcoleId = id;
+
             const modal = document.getElementById('modalOverlay');
             const body = document.getElementById('modalBody');
 
-            // Filières
-            let filieresHtml = '';
+            // Filières tags
+            let filieresTags = '';
             ecole.filieres.forEach(f => {
                 const cls = f.toLowerCase();
-                filieresHtml += `<span class="filiere-tag ${cls}" style="display:inline-block;padding:2px 12px;border-radius:12px;font-size:0.7rem;font-weight:700;text-transform:uppercase;color:white;margin-right:4px;">${f}</span>`;
+                filieresTags += `<span class="filiere-tag ${cls}" style="display:inline-block;padding:2px 12px;border-radius:12px;font-size:0.7rem;font-weight:700;text-transform:uppercase;color:white;margin-right:4px;">${f}</span>`;
             });
 
             // Places
-            let placesHtml = '<tr><th>Filière</th><th>Places disponibles</th></tr>';
-            if (ecole.places.MP) placesHtml += `<tr><td><strong>MP</strong></td><td class="highlight">${ecole.places.MP}</td></tr>`;
-            if (ecole.places.PSI) placesHtml += `<tr><td><strong>PSI</strong></td><td class="highlight">${ecole.places.PSI}</td></tr>`;
-            if (ecole.places.TSI) placesHtml += `<tr><td><strong>TSI</strong></td><td class="highlight">${ecole.places.TSI}</td></tr>`;
-            if (ecole.total) placesHtml += `<tr><td><strong>Total</strong></td><td class="highlight">${ecole.total}</td></tr>`;
+            let placesHtml = '';
+            if (ecole.places.MP) placesHtml += `<span><strong>MP :</strong> ${ecole.places.MP}</span>`;
+            if (ecole.places.PSI) placesHtml += `<span><strong>PSI :</strong> ${ecole.places.PSI}</span>`;
+            if (ecole.places.TSI) placesHtml += `<span><strong>TSI :</strong> ${ecole.places.TSI}</span>`;
 
-            // Min/Max
-            let minmaxHtml = '';
-            if (ecole.minmax && ecole.minmax.MP && ecole.minmax.MP.min > 0) {
-                minmaxHtml = `
-                    <h3>📊 Classement MIN / MAX (MP)</h3>
-                    <table class="minmax-table">
-                        <thead><tr><th>Année</th><th>MIN</th><th>MAX</th></tr></thead>
-                        <tbody>
-                            <tr><td>2026</td><td>${ecole.minmax.MP.min}</td><td>${ecole.minmax.MP.max}</td></tr>
-                        </tbody>
-                    </table>
-                `;
-            }
-
-            // Filières détaillées (ENSIAS)
-            let filieresDetailHtml = '';
-            if (ecole.filieresDetails && ecole.filieresDetails.length > 0) {
-                let rows = '';
-                ecole.filieresDetails.forEach(f => {
-                    rows += `<tr><td>${f.nom}</td><td>${f.min}</td><td>${f.max}</td></tr>`;
-                });
-                filieresDetailHtml = `
-                    <h3>📋 Détail des filières</h3>
-                    <table class="minmax-table">
-                        <thead><tr><th>Filière</th><th>MIN</th><th>MAX</th></tr></thead>
-                        <tbody>${rows}</tbody>
-                    </table>
-                `;
-            }
-
-            // Débouchés
-            let debouchesHtml = '';
-            if (ecole.debouches && ecole.debouches.length > 0) {
-                let items = ecole.debouches.map(d => `<span style="display:inline-block;padding:4px 14px;border-radius:16px;background:var(--color-gray-100);color:var(--color-gray-700);margin:4px;font-size:0.85rem;">${d}</span>`).join('');
-                debouchesHtml = `
-                    <h3>💼 Débouchés</h3>
-                    <div>${items}</div>
-                `;
-            }
-
-            // Liens utiles
-            let liensHtml = '';
-            if (ecole.site) {
-                liensHtml += `<a href="${ecole.site}" target="_blank"><i class="fas fa-globe"></i> Site officiel</a>`;
-            }
-            if (ecole.brochure) {
-                liensHtml += `<a href="${ecole.brochure}" target="_blank"><i class="fas fa-file-pdf"></i> Brochure</a>`;
-            }
-
+            // Construction du contenu
             body.innerHTML = `
-                <div class="modal-title">${ecole.acronyme} - ${ecole.nom}</div>
-                <div class="modal-subtitle"><i class="fas fa-map-marker-alt"></i> ${ecole.ville}</div>
-                <div style="margin-bottom:12px;">${filieresHtml}</div>
+                <!-- En-tête -->
+                <div class="ecole-header">
+                    <div class="ecole-logo">${ecole.icone || '🏛️'}</div>
+                    <div class="ecole-info">
+                        <h2>${ecole.acronyme} - ${ecole.nom}</h2>
+                        <div class="ecole-acronyme-header">${ecole.ville}</div>
+                        <div style="margin-top:4px;">${filieresTags}</div>
+                    </div>
+                    ${ecole.total ? `
+                    <div class="ecole-places-header">
+                        <div class="places-number">${ecole.total}</div>
+                        <div class="places-label">Places totales</div>
+                        <div style="font-size:0.7rem;color:var(--color-gray-400);">${placesHtml}</div>
+                    </div>
+                    ` : ''}
+                </div>
 
-                <div class="modal-section">
+                <!-- Onglets -->
+                <div class="ecole-tabs">
+                    <button class="tab-btn active" data-tab="presentation" onclick="switchTab('${id}','presentation')">📖 Présentation</button>
+                    <button class="tab-btn" data-tab="minmax" onclick="switchTab('${id}','minmax')">📊 Min & Max</button>
+                    <button class="tab-btn" data-tab="filieres" onclick="switchTab('${id}','filieres')">📐 Filières</button>
+                    <button class="tab-btn" data-tab="vie" onclick="switchTab('${id}','vie')">🏫 Vie étudiante</button>
+                </div>
+
+                <!-- Contenu des onglets -->
+                <div id="tabPresentation" class="tab-content active">
                     <h3>📖 Présentation</h3>
                     <p>${ecole.description || 'Description à venir.'}</p>
-                </div>
-
-                <div class="modal-section">
-                    <h3>🎯 Places disponibles (CNC 2026)</h3>
-                    <table class="places-table">${placesHtml}</table>
-                </div>
-
-                ${minmaxHtml}
-
-                ${filieresDetailHtml}
-
-                <div class="modal-section">
-                    <h3>📊 Votre classement</h3>
-                    <div class="recommandation">
-                        <div class="range-input">
-                            <label>Entrez votre classement MP :</label>
-                            <input type="number" id="rankInput" placeholder="Ex: 150" />
-                            <button onclick="checkChance('${ecole.id}')">Vérifier</button>
+                    ${ecole.debouches ? `
+                        <h4 style="margin-top:16px;font-weight:700;color:var(--color-gray-900);">💼 Débouchés</h4>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;">
+                            ${ecole.debouches.map(d => `<span style="padding:4px 14px;border-radius:16px;background:var(--color-gray-100);color:var(--color-gray-700);font-size:0.85rem;">${d}</span>`).join('')}
                         </div>
-                        <div class="result" id="resultChance"></div>
+                    ` : ''}
+                    ${ecole.site ? `
+                        <div style="margin-top:16px;">
+                            <a href="${ecole.site}" target="_blank" style="color:var(--color-secondary);font-weight:600;">
+                                <i class="fas fa-globe"></i> Site officiel
+                            </a>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div id="tabMinmax" class="tab-content">
+                    <h3>📊 Min & Max</h3>
+                    <div class="minmax-container">
+                        <div class="chart-wrapper">
+                            <canvas id="minmaxChart"></canvas>
+                        </div>
+                        <div>
+                            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+                                <select id="filiereSelect" onchange="updateMinMax('${id}')" style="padding:8px 14px;border:1px solid var(--color-gray-300);border-radius:var(--radius-sm);background:var(--color-white);color:var(--color-gray-900);">
+                                    ${ecole.filieres.filter(f => ecole.places[f] !== null).map(f => `<option value="${f}">${f}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div class="minmax-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr><th>Année</th><th>MIN</th><th>MAX</th></tr>
+                                    </thead>
+                                    <tbody id="minmaxTableBody">
+                                        <!-- Généré par JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="recommandation">
+                                <div class="range-input">
+                                    <label>Votre classement :</label>
+                                    <input type="number" id="rankInput" placeholder="Ex: 150" />
+                                    <input type="range" id="rankSlider" min="0" max="3000" value="500" oninput="syncRankInput(this.value)" />
+                                    <button onclick="checkChance('${id}')">Vérifier</button>
+                                </div>
+                                <div class="result" id="resultChance"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                ${debouchesHtml}
+                <div id="tabFilieres" class="tab-content">
+                    <h3>📐 Filières</h3>
+                    <div class="filiere-list">
+                        ${ecole.filieresDetails && ecole.filieresDetails.length > 0 ? ecole.filieresDetails.map((f, index) => `
+                            <div class="filiere-item ${index === 0 ? 'active' : ''}" onclick="selectFiliere(this, '${id}', ${index})">
+                                <div class="filiere-name">${f.nom}</div>
+                                <div class="filiere-desc">${f.description || ''}</div>
+                            </div>
+                        `).join('') : '<p>Informations sur les filières à venir.</p>'}
+                    </div>
+                    <div class="filiere-detail active" id="filiereDetail">
+                        ${ecole.filieresDetails && ecole.filieresDetails.length > 0 ? `
+                            <h4>${ecole.filieresDetails[0].nom}</h4>
+                            <p>${ecole.filieresDetails[0].description || 'Description à venir.'}</p>
+                            ${ecole.filieresDetails[0].programme ? `
+                                <h5 style="margin-top:12px;font-weight:700;">Programme</h5>
+                                <ul class="programme-list">
+                                    ${ecole.filieresDetails[0].programme.map(p => `<li>• ${p}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                            <button class="btn-download-programme" onclick="alert('Téléchargement du programme ${ecole.filieresDetails[0].nom}')">
+                                <i class="fas fa-download"></i> Télécharger le programme
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
 
-                <div class="modal-section">
-                    <h3>🔗 Liens utiles</h3>
-                    <div class="liens-utiles">${liensHtml || 'À venir'}</div>
+                <div id="tabVie" class="tab-content">
+                    <h3>🏫 Vie étudiante</h3>
+                    ${ecole.vie ? `
+                        <div class="vie-grid">
+                            <div class="vie-card">
+                                <div class="vie-icon">🏛️</div>
+                                <h4>Campus</h4>
+                                <p>${ecole.vie.campus || 'Informations à venir.'}</p>
+                            </div>
+                            <div class="vie-card">
+                                <div class="vie-icon">🤝</div>
+                                <h4>Associations</h4>
+                                <p>${ecole.vie.associations ? ecole.vie.associations.join(', ') : 'Informations à venir.'}</p>
+                            </div>
+                            <div class="vie-card">
+                                <div class="vie-icon">📅</div>
+                                <h4>Événements</h4>
+                                <p>${ecole.vie.evenements ? ecole.vie.evenements.join(', ') : 'Informations à venir.'}</p>
+                            </div>
+                            <div class="vie-card">
+                                <div class="vie-icon">🏠</div>
+                                <h4>Logement</h4>
+                                <p>${ecole.vie.logement || 'Informations à venir.'}</p>
+                            </div>
+                        </div>
+                    ` : '<p>Informations sur la vie étudiante à venir.</p>'}
                 </div>
             `;
 
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Initialiser le graphique après un court délai
+            setTimeout(() => {
+                updateMinMax(id);
+            }, 300);
         }
 
         // ============================================================
@@ -1419,6 +2436,10 @@
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = 'auto';
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
         }
 
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
@@ -1430,7 +2451,178 @@
         });
 
         // ============================================================
-        // 7. FONCTIONNALITÉ RECOMMANDATION
+        // 7. CHANGEMENT D'ONGLET
+        // ============================================================
+        function switchTab(id, tab) {
+            const modal = document.getElementById('modalOverlay');
+            if (!modal.classList.contains('active')) return;
+
+            // Mettre à jour les boutons
+            modal.querySelectorAll('.ecole-tabs .tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tab);
+            });
+
+            // Mettre à jour les contenus
+            modal.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const target = modal.querySelector(`#tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
+            if (target) target.classList.add('active');
+
+            // Si onglet Min & Max, rafraîchir le graphique
+            if (tab === 'minmax') {
+                setTimeout(() => updateMinMax(id), 200);
+            }
+        }
+
+        // ============================================================
+        // 8. MISE À JOUR MIN & MAX
+        // ============================================================
+        function updateMinMax(id) {
+            const ecole = ECOLES_DATA.find(e => e.id === id);
+            if (!ecole) return;
+
+            const filiere = document.getElementById('filiereSelect')?.value || 'MP';
+            const data = ecole.minmax?.[filiere];
+
+            // Mettre à jour le tableau
+            const tbody = document.getElementById('minmaxTableBody');
+            if (tbody && data) {
+                let rows = '';
+                data.annees.forEach(a => {
+                    rows += `
+                        <tr>
+                            <td>${a.annee}</td>
+                            <td>${a.min !== null ? a.min : '<span class="no-data">—</span>'}</td>
+                            <td>${a.max !== null ? a.max : '<span class="no-data">—</span>'}</td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = rows;
+            }
+
+            // Mettre à jour le graphique
+            updateChart(id, filiere);
+        }
+
+        // ============================================================
+        // 9. GRAPHIQUE
+        // ============================================================
+        function updateChart(id, filiere) {
+            const ecole = ECOLES_DATA.find(e => e.id === id);
+            if (!ecole) return;
+
+            const data = ecole.minmax?.[filiere];
+            if (!data) return;
+
+            const ctx = document.getElementById('minmaxChart');
+            if (!ctx) return;
+
+            // Détruire l'ancien graphique
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+
+            const annees = data.annees.map(a => a.annee);
+            const minData = data.annees.map(a => a.min !== null ? a.min : null);
+            const maxData = data.annees.map(a => a.max !== null ? a.max : null);
+
+            // Filtrer les années avec des données
+            const validData = data.annees.filter(a => a.min !== null && a.max !== null);
+
+            if (validData.length === 0) {
+                // Afficher un message si pas de données
+                const parent = ctx.parentElement;
+                parent.innerHTML = `
+                    <div style="display:flex;align-items:center;justify-content:center;height:200px;color:var(--color-gray-400);">
+                        <i class="fas fa-info-circle" style="margin-right:10px;"></i>
+                        Données MIN/MAX non disponibles pour ${filiere}
+                    </div>
+                `;
+                return;
+            }
+
+            const validAnnees = validData.map(a => a.annee);
+            const validMin = validData.map(a => a.min);
+            const validMax = validData.map(a => a.max);
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: validAnnees,
+                    datasets: [
+                        {
+                            label: 'MIN',
+                            data: validMin,
+                            borderColor: '#4F46E5',
+                            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointBackgroundColor: '#4F46E5'
+                        },
+                        {
+                            label: 'MAX',
+                            data: validMax,
+                            borderColor: '#06B6D4',
+                            backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointBackgroundColor: '#06B6D4'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--color-gray-700').trim() || '#333'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ============================================================
+        // 10. SYNCHRONISATION CHAMP / CURSEUR
+        // ============================================================
+        function syncRankInput(value) {
+            const input = document.getElementById('rankInput');
+            if (input) input.value = value;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const rankInput = document.getElementById('rankInput');
+            const rankSlider = document.getElementById('rankSlider');
+            if (rankInput && rankSlider) {
+                rankInput.addEventListener('input', function() {
+                    rankSlider.value = this.value;
+                });
+            }
+        });
+
+        // ============================================================
+        // 11. RECOMMANDATION
         // ============================================================
         function checkChance(id) {
             const ecole = ECOLES_DATA.find(e => e.id === id);
@@ -1438,6 +2630,7 @@
 
             const input = document.getElementById('rankInput');
             const result = document.getElementById('resultChance');
+            const filiere = document.getElementById('filiereSelect')?.value || 'MP';
 
             const rank = parseInt(input.value);
             if (isNaN(rank) || rank < 1) {
@@ -1449,22 +2642,33 @@
                 return;
             }
 
-            // Utiliser MIN/MAX de l'école
-            const min = ecole.minmax?.MP?.min || 0;
-            const max = ecole.minmax?.MP?.max || 0;
-
-            if (min === 0 && max === 0) {
+            const data = ecole.minmax?.[filiere];
+            if (!data) {
                 result.className = 'result';
                 result.style.display = 'block';
-                result.textContent = 'ℹ️ Données de classement non disponibles pour cette école.';
+                result.textContent = 'ℹ️ Données de classement non disponibles pour cette filière.';
                 result.style.background = '#E0E7FF';
                 result.style.color = '#3730A3';
                 return;
             }
 
-            // Calculer la position dans la fourchette
-            const range = max - min;
-            const position = rank - min;
+            // Calculer la moyenne des MIN et MAX sur toutes les années disponibles
+            const validData = data.annees.filter(a => a.min !== null && a.max !== null);
+            if (validData.length === 0) {
+                result.className = 'result';
+                result.style.display = 'block';
+                result.textContent = 'ℹ️ Données de classement non disponibles pour cette filière.';
+                result.style.background = '#E0E7FF';
+                result.style.color = '#3730A3';
+                return;
+            }
+
+            const avgMin = validData.reduce((sum, a) => sum + a.min, 0) / validData.length;
+            const avgMax = validData.reduce((sum, a) => sum + a.max, 0) / validData.length;
+
+            // Calculer la position
+            const range = avgMax - avgMin;
+            const position = rank - avgMin;
             const percent = Math.max(0, Math.min(100, (position / range) * 100));
 
             let niveau = '';
@@ -1472,17 +2676,17 @@
             let message = '';
             let fillColor = '';
 
-            if (rank <= min) {
+            if (rank <= avgMin) {
                 niveau = 'Forte chance';
                 couleur = 'forte';
                 message = `✅ ${rank} — Vous êtes dans la fourchette haute ! Forte chance d'admission.`;
                 fillColor = 'forte';
-            } else if (rank <= min + range * 0.4) {
+            } else if (rank <= avgMin + range * 0.4) {
                 niveau = 'Bonne chance';
                 couleur = 'moyenne';
                 message = `📊 ${rank} — Vous êtes dans la fourchette moyenne. Bonne chance pour l'admission.`;
                 fillColor = 'moyenne';
-            } else if (rank <= max) {
+            } else if (rank <= avgMax) {
                 niveau = 'Chance moyenne';
                 couleur = 'moyenne';
                 message = `📊 ${rank} — Vous êtes dans la fourchette basse. Chance moyenne d'admission.`;
@@ -1499,20 +2703,62 @@
             result.innerHTML = `
                 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
                     <span>${message}</span>
-                    <span style="font-size:1.2rem;">${niveau}</span>
+                    <span style="font-size:1.2rem;font-weight:800;">${niveau}</span>
                 </div>
                 <div class="chance-bar">
                     <div class="fill ${fillColor}" style="width:${Math.min(100, 100 - percent)}%;"></div>
                 </div>
-                <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--color-gray-400);margin-top:4px;">
-                    <span>MIN: ${min}</span>
-                    <span>MAX: ${max}</span>
+                <div class="range-indicator">
+                    <span>MIN moyen: ${Math.round(avgMin)}</span>
+                    <span>MAX moyen: ${Math.round(avgMax)}</span>
                 </div>
             `;
+
+            // Ajouter le point sur le graphique si disponible
+            if (chartInstance) {
+                // Optionnel : ajouter une ligne horizontale pour le classement
+            }
         }
 
         // ============================================================
-        // 8. RECHERCHE AVEC ENTRÉE
+        // 12. SÉLECTION D'UNE FILIÈRE DANS L'ONGLET FILIÈRES
+        // ============================================================
+        function selectFiliere(element, id, index) {
+            const ecole = ECOLES_DATA.find(e => e.id === id);
+            if (!ecole || !ecole.filieresDetails) return;
+
+            // Mettre à jour les éléments
+            const parent = element.parentElement;
+            parent.querySelectorAll('.filiere-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            // Mettre à jour le détail
+            const detail = document.getElementById('filiereDetail');
+            const filiere = ecole.filieresDetails[index];
+            if (detail && filiere) {
+                let programmeHtml = '';
+                if (filiere.programme) {
+                    programmeHtml = `
+                        <h5 style="margin-top:12px;font-weight:700;">Programme</h5>
+                        <ul class="programme-list">
+                            ${filiere.programme.map(p => `<li>• ${p}</li>`).join('')}
+                        </ul>
+                    `;
+                }
+                detail.innerHTML = `
+                    <h4>${filiere.nom}</h4>
+                    <p>${filiere.description || 'Description à venir.'}</p>
+                    ${programmeHtml}
+                    <button class="btn-download-programme" onclick="alert('Téléchargement du programme ${filiere.nom}')">
+                        <i class="fas fa-download"></i> Télécharger le programme
+                    </button>
+                `;
+                detail.classList.add('active');
+            }
+        }
+
+        // ============================================================
+        // 13. RECHERCHE AVEC ENTRÉE
         // ============================================================
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
